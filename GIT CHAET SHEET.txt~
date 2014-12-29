@@ -1,0 +1,15 @@
+add all: You can also type 
+
+git add -A . 
+
+where the dot stands for the current directory, so everything in and beneath it is added. The -A ensures even file deletions are included.
+-----------------
+git reset: You can use 
+
+git reset <filename> 
+
+to remove a file or files from the staging area.
+------------------
+
+git commit -m 'comment text here'
+
