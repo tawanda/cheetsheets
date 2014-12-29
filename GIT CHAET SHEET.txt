@@ -38,7 +38,7 @@ git rm '*.txt'
 
 
 
------------------BRANCHING---see also conflict resolution below-----------------------
+-----------------BRANCHING---see also conflict resolution & how to save your branch remotley below-----------------------
 
 git branch gitcheat  	#make the new branch
 git branch			 	#shows all the local branches
@@ -84,8 +84,23 @@ The third options is to discard the local changes using
 
 git reset --hard.
 
-###########################By default git stash will not stash files for which there are no history. So if you have files which you have not yet added but which would be overwritten or "created" by the merge, then the merge will still block. In that situation, you can use git stash -u to stash uncommitted files too. Or you can just delete them!#######################################3
+###########################
+By default git stash will not stash files for which there are no history. So if you have files which you have not yet added but which would be overwritten or "created" by the merge, then the merge will still block. In that situation, you can use git stash -u to stash uncommitted files too. Or you can just delete them!
+############################
 
+====
+---------------HOW TO SAVE YOUR BRANCH ONLINE TO GIT--------
+=====
+
+You need:
+
+git push -u origin gitcheat
+#origin is the name of your upstream repo url: https://github.com/myname/myrep.git
+
+
+#Make sure your push.default policy is set properly, then you can just run git push and will push to the branch:
+
+git config --global push.default simple
 
 
 =================APPENDIX======================================
@@ -132,9 +147,6 @@ git push
 git pull
 
 : If you’re working on your local computer and want the most up-to-date version of your repository to work with, you “pull” the changes down from GitHub with this command.
-
------------------------
-
 
 
 
