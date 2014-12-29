@@ -51,7 +51,7 @@ git commit -m 'message text' #commit
 git checkout master		#go back to master
 git merge gitcheat		#merge changes if conflict read below
 
-
+git branch -d branchname  #deletes a branch
 
 
 =========
