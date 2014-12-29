@@ -38,12 +38,53 @@ git rm '*.txt'
 
 
 
------------------BRANCHING--------------------------
+-----------------BRANCHING---see also conflict resolution below-----------------------
 
 git branch gitcheat  	#make the new branch
 git branch			 	#shows all the local branches
-git checkout gitcheat	#You can switch branches using the git checkout <branch> command.
+git checkout gitcheat	
+#You can switch branches using the git checkout <branch> command. (all your files will be different and maintained when switching between branches which is super cool)
 
+git add . 				#make chnages and add them
+git commit -m 'message text' #commit
+
+git checkout master		#go back to master
+git merge gitcheat		#merge changes if conflict read below
+
+
+
+
+=========
+IF YOU GET A CONFLICT BECAUSE A FIE ON MASTER WILL BE OVERWRITTEN:
+=========
+
+You can't merge with local modifications. Git protects you from losing important changes. You have three options. 
+
+1)
+One is to commit the change using
+
+git commit -m "My message"
+
+
+2)
+The second is to stash it. stashing acts as a stack, where you can push changes, and you pop them in reverse order.
+
+To stash type:
+
+git stash
+
+git merge branchname 
+#then Do the merge 
+
+git stash pop 
+# pull the stash, this is like a pull and will(hopefully) merge the conflicts in the file in question
+
+3)
+The third options is to discard the local changes using 
+
+git reset --hard.
+
+###########################By default git stash will not stash files for which there are no history. So if you have files which you have not yet added but which would be overwritten or "created" by the merge, then the merge will still block. In that situation, you can use git stash -u to stash uncommitted files too. Or you can just delete them!#######################################3
 
 
 
@@ -91,6 +132,19 @@ git push
 git pull
 
 : If you’re working on your local computer and want the most up-to-date version of your repository to work with, you “pull” the changes down from GitHub with this command.
+
+-----------------------
+
+
+
+
+
+
+
+
+
+
+
 
 
 
