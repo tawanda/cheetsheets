@@ -1,10 +1,25 @@
+------cycle for adding canges-------
+git status
+git add -A .
+git commit -m 'comment here'
+git push
+
+
+------------
 git init  #initialises a repo in that directory
-git clone #
+
+git clone https://github.com/Tawanda-m/cheetsheets.git 
+# no need for init thsi creates the directory for you
 
 
----------------------------
+-------Add file changes--------------------
+git add .
+
+OR
 
 add all: You can also type 
+
+OR
 
 git add -A . 
 
