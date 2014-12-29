@@ -1,0 +1,321 @@
+
+sudo aptitude install apache2
+
+
+Next up, we’ll test to see if PHP is working. In terminal, enter the following command to create a new document:
+
+sudo nano /var/www/testing.php
+
+Then, copy the following code:
+
+<?php phpinfo(); ?>
+
+Let’s test Apache to see if it’s serving properly. Open up a browser and direct it the following URL:
+
+http://localhost/
+defualt domain is 127.0.1.1cd
+
+
+
+=================how to control apache2========================================
+How do I start, restart, or stop Apache 2.x web server on Ubuntu Linux operating systems using command line options?
+
+You can use any one of the following method to restart / start / stop your Apache (httpd) sever on Ubuntu:
+
+	/etc/init.d/apache2 - A sys v init style script to start / stop / restart the Apache2 service under Debian or Ubuntu Linux.
+
+	service command - This command work in most Linux distributions including Debian and Ubuntu.
+
+	upstart command - Only works on latest version of Ubuntu.
+
+	apache2ctl command - This method should work on all Linux and Unix like operating systems.
+
+Method #1: /etc/init.d/apache2 command examples
+
+
+You need to login as root user or use the sudo command to control Apache web-server.
+
+Task: Start Apache 2 Server
+
+# /etc/init.d/apache2 start
+
+or
+$ sudo /etc/init.d/apache2 start
+
+Task: Restart Apache 2 Server
+
+# /etc/init.d/apache2 restart
+
+or
+$ sudo /etc/init.d/apache2 restart
+
+Task: Stop Apache 2 Server
+
+# /etc/init.d/apache2 stop
+
+or
+$ sudo /etc/init.d/apache2 stop
+
+Method #2: service command examples
+
+To restart Apache 2, enter:
+$ sudo service apache2 restart
+
+To stop Apache 2, enter:
+$ sudo service apache2 stop
+
+To start Apache 2, enter:
+$ sudo service apache2 start
+
+To gracefully reload Apache 2, enter:
+$ sudo service apache2 reload
+
+Method #3: upstart command examples
+
+To start Apache 2 on Ubuntu, run:
+$ sudo start apache2
+
+To stop Apache 2 on Ubuntu, run:
+$ sudo stop apache2
+
+To restart Apache 2 on Ubuntu, run:
+$ sudo restart apache2
+
+To gracefully reload Apache 2 on Ubuntu, run:
+$ sudo restart apache2
+
+Method #4: apache2ctl command examples
+
+apache2ctl is Apache HTTP server control interface command, which can be used to stop or start web server under any Linux distribution or UNIX.
+To start Apache 2 on Ubuntu, type:
+$ sudo apache2ctl start
+
+To stop Apache 2 on Ubuntu, type:
+$ sudo apache2ctl stop
+
+To restart Apache 2 on Ubuntu, type:
+$ sudo apache2ctl restart
+
+To gracefully reload Apache 2 on Ubuntu, type:
+$ sudo apache2ctl graceful
+
+
+=======also:  sudo /usr/sbin/apachectl restart
+
+
+==================Installing mod_wsgi ===========
+
+
+sudo aptitude install libapache2-mod-wsgi
+
+
+Restart Apache to get mod_wsgi to work.
+
+sudo service apache2 restart
+
+
+======================postgreSQL=====================
+Postgres package and a "contrib" package that adds some additional utilities and functionality:
+
+sudo apt-get install postgresql postgresql-contrib
+
+
+Upon installation Postgres is set up to use "ident" authentication, meaning that it associates Postgres roles with a matching Unix/Linux system account
+
+sudo -i -u postgres
+
+You will be asked for your normal user password and then will be given a shell prompt for the postgres user.
+
+You can get a Postgres prompt immediately by typing:
+
+psql
+
+
+create a database 
+
+createdb test1
+
+
+go out of this by \q
+
+
+lets create a user and give them a password
+
+first create a new user in linux
+
+adduser test1		#this will prompt you for a password use 'test1' to keep things simple
+
+log into psql
+
+sudo -i -u test1
+psql
+
+at the prompt add a password for this user (no idea why tis has to be done again instead of useing the unix password)
+
+ALTER ROLE test1 WITH PASSWORD 'test1';
+
+
+---------------python bindings----------------------------
+
+In addition to a database backend, you’ll need to make sure your Python database bindings are installed.
+
+If you’re using PostgreSQL, you’ll need the postgresql_psycopg2 package
+
+
+sudo apt-get install python-psycopg2
+
+
+======install Django==============
+
+make sure you install pip first
+The python-dev and build-essential packages are recommended to install along, because it isn't possible to install any Python module that ships with a C extension without them later on.
+
+sudo apt-get install python-pip python-dev build-essential
+sudo pip install --upgrade pip
+
+then
+
+sudo pip install Django
+
+==========make django project==============
+
+create a folder 
+
+mkdir /var/www/testsite.com
+
+go into the folder and run
+
+django-admin.py startproject testsite .   #note the full stop, it makes sure the django installer does not make another directory and place the install filed into it
+
+
+
+
+
+
+==========HOSTING======================
+
+Create your new virtual host node which should look something like this
+
+
+sudo nano /etc/apache2/sites-available/mydomain.com.conf
+
+put this
+
+
+
+<VirtualHost *:80>
+	ServerAdmin webmaster@mydomain.com
+        ServerName testsite.com
+        ServerAlias testsite.com
+
+        WSGIScriptAlias / /var/www/testsite.com/index.wsgi
+
+        Alias /static/ /var/www/testsite.com/static/
+        <Location "/static/">
+            Options -Indexes
+        </Location>
+</VirtualHost>
+
+
+
+make the static directory
+
+mkdir /var/www/testsite.com/static/
+
+create the index.wsgi file (can be any name not just index)
+
+vim /var/www/testsite.com/index.wsgi
+
+add this to the file 
+
+import os
+import sys
+sys.path.append('~/www/testsite.com/')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'testsite.settings'
+import django.core.handlers.wsgi
+application = django.core.handlers.wsgi.WSGIHandler()
+
+
+
+enable the site
+
+ a2ensite /etc/apache2/sites-available/www.testsite.com.conf
+
+sudo service apache2 restart
+
+edit your Apache server’s httpd.conf file and add the following. If you are using a version of Apache older than 2.4, replace Require all granted with Allow from all and also add the line Order deny,allow above it.The first bit in the WSGIScriptAlias line is the base URL path you want to serve your application at (/ indicates the root url), and the second is the location of a “WSGI file” – see below – on your system, usually inside of your project package (mysite in this example). This tells Apache to serve any request below the given URL using the WSGI application defined in that file.
+
+The WSGIPythonPath line ensures that your project package is available for import on the Python path; in other words, that import mysite works.
+
+The <Directory> piece just ensures that Apache can access your wsgi.py file.
+On Ubuntu the main Apache configuration file is actually apache2.conf
+
+
+
+WSGIScriptAlias / /var/www/testsite.com/testsite/wsgi.py
+WSGIPythonPath /var/www/testsite.com
+
+<Directory /var/www/testsite.com>
+<Files wsgi.py>
+Require all granted
+</Files>
+</Directory>
+
+
+sudo service apache2 restart
+
+=====================CONFIGURE DJANGO APP================
+
+Now, edit testsite/settings.py. It’s a normal Python module with module-level variables representing Django settings. add the postgresql details we created earlier NAME is the database name 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test1',
+        'USER': 'test1',
+        'PASSWORD': 'test1',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+
+now create the default tables using the manage function
+
+python manage.py migrate
+
+
+==========dont forget to migrate static content============
+Add to settings:
+
+STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/static/'
+
+Then run "python manage.py collectstatic"
+
+====================DJANGO APP==============================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

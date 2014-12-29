@@ -1,0 +1,201 @@
+OPERATORS REF:: http://docs.mongodb.org/manual/reference/operator/query/
+
+===========================database size========================================
+
+REF:  https://blog.serverdensity.com/mongodb-monitoring-keep-in-it-ram/
+
+
+
+The MongoDB console provides an easy way to look at the data and index sizes. The db.stats() command will analyse the database and give you a range of statistics. The output is provided in bytes for dataSize and indexSize. It may take a few seconds for this command to return for large databases and in the most recent versions of MongoDB, it will not block.
+
+> db.stats()
+{
+	"collections" : 3,
+	"objects" : 379970142,
+	"avgObjSize" : 146.4554114991488,
+	"dataSize" : 55648683504,
+	"storageSize" : 61795435008,
+	"numExtents" : 64,
+	"indexes" : 1,
+	"indexSize" : 21354514128,
+	"fileSize" : 100816388096,
+	"ok" : 1
+}
+Here we can see we have around 51GB of data and 19GB of indexes. This means we’d need at least 20 GB of RAM for just indexes and 72GB of RAM for both data and indexes.
+
+For larger data sets like this, a good rule is to ensure you have enough memory for the working set. You define your own working set by looking at the collections you know you want to be kept in RAM and ensuring that there is sufficient RAM for them. You can use the db.collectionName.stats() command on each individual collection to determine its total size.
+
+construct
+
+> db.stats()
+{
+	"db" : "construct",
+	"collections" : 313,
+	"objects" : 8060576,
+	"avgObjSize" : 1321.3046551511952,
+	"dataSize" : 10650476592,
+	"storageSize" : 12880924672,
+	"numExtents" : 1286,
+	"indexes" : 516,
+	"indexSize" : 580700400,
+	"fileSize" : 14958985216,
+	"nsSizeMB" : 16,
+	"dataFileVersion" : {
+		"major" : 4,
+		"minor" : 5
+	},
+	"extentFreeList" : {
+		"num" : 0,
+		"totalSize" : 0
+	},
+	"ok" : 1
+}
+
+
+10650476592B = 10.65Gb of data
+  580700400B = 0.58Gb of index
+
+
+For larger data sets like this, a good rule is to ensure you have enough memory for the working set. You define your own working set by looking at the collections you know you want to be kept in RAM and ensuring that there is sufficient RAM for them. You can use the db.collectionName.stats() command on each individual collection to determine its total size
+
+
+========================================
+
+show collections
+
+use databse_name
+
+
+
+
+
+
+
+
+
+
+
+
+================================
+The sort function requires that the entire sort be able to complete within 32 megabytes. When the sort option consumes more than 32 megabytes, MongoDB will return an error.
+To avoid this error, create an index to support the sort operation or use $orderby in conjunction with $maxScan and/or cursor.limit(). The cursor.limit() increases the speed and reduces the amount of memory required to return this query by way of an optimized algorithm. The specified limit must result in a number of documents that fall within the 32 megabyte limit.
+
+
+
+{ "_id" : ObjectId("51a7dc7b2cacf40b79990be6"), "x" : 1 ,"y" : 10 }
+
+var c = db.testData.find()
+while ( c.hasNext() ) printjson( c.next() )
+
+var c = db.testData.find()
+printjson( c [ 4 ] )
+
+db.testData.find( { x : 18 } )
+
+
+db.testData.find().limit(3)
+
+//selects all documents in the inventory collection where the value of the type field is either 'food' or 'snacks'
+
+db.inventory.find( { type: { $in: [ 'food', 'snacks' ] } } )     
+
+db.bios.find().limit( 5 )
+
+db.bios.find().skip( 5 )
+
+db.bios.find().sort( { name: 1 } ).limit( 5 )
+
+
+{ name: { $regex: /acme.*corp/ } }
+{ name: { $in: [ /^acme/i, /^ack/ ] } }     //$in is like $or, this regexes different options
+
+db.inventory.find(
+   {
+     $or: [ { qty: { $gt: 100 } }, { price: { $lt: 9.95 } } ]
+   }
+)
+
+
+In the following example, the query uses the dot notation to match all documents where the value of the field producer is an embedded document that contains a field company with the value 'ABC123' and may contain other fields:
+
+db.inventory.find( { 'producer.company': 'ABC123' } )
+
+==================================
+
+db.inventory.find( { ratings: 5 } )
+The operation returns the following documents:
+
+{ "_id" : 5, "type" : "food", "item" : "aaa", "ratings" : [ 5, 8, 9 ] }
+{ "_id" : 6, "type" : "food", "item" : "bbb", "ratings" : [ 5, 9 ] }
+{ "_id" : 7, "type" : "food", "item" : "ccc", "ratings" : [ 9, 5, 8 ] }
+
+you can also be more specific:
+
+db.inventory.find( { 'ratings.0': 5 } )
+
+The operation returns the following documents:
+
+{ "_id" : 5, "type" : "food", "item" : "aaa", "ratings" : [ 5, 8, 9 ] }
+{ "_id" : 6, "type" : "food", "item" : "bbb", "ratings" : [ 5, 9 ] }
+
+Use $elemMatch operator to specify multiple criteria on the elements of an array such that at least one array element satisfies all the specified criteria.
+
+The following example queries for documents where the ratings array contains at least one element that is greater than ($gt) 5 and less than ($lt) 9:
+
+db.inventory.find( { ratings: { $elemMatch: { $gt: 5, $lt: 9 } } } )
+The operation returns the following documents, whose ratings array contains the element 8 which meets the criteria:
+
+{ "_id" : 5, "type" : "food", "item" : "aaa", "ratings" : [ 5, 8, 9 ] }
+{ "_id" : 7, "type" : "food", "item" : "ccc", "ratings" : [ 9, 5, 8 ] }
+
+
+
+====================================
+
+
+Consider that the inventory collection includes the following documents:
+
+{
+  _id: 100,
+  type: "food",
+  item: "xyz",
+  qty: 25,
+  price: 2.5,
+  ratings: [ 5, 8, 9 ],
+  memos: [ { memo: "on time", by: "shipping" }, { memo: "approved", by: "billing" } ]
+}
+
+The following example selects all documents where the memos contains an array whose first element (i.e. index is 0) is a document that contains the field by whose value is 'shipping':
+
+db.inventory.find( { 'memos.0.by': 'shipping' } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

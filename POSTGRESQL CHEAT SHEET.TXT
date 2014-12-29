@@ -1,0 +1,121 @@
+=========SET UP================================
+
+create user username with password 'password';
+create database databasename with owner username;
+
+
+log in 
+
+psql -d databasename -U username
+
+
+
+
+
+================SET UP? dont use maybe================
+
+We can create a new role USING INTERACTIVE by typing:
+
+createuser -i
+
+
+make the database 
+
+createdb test1
+
+create unix user to autolink to postgre
+
+adduser test1
+
+
+log into postgres
+sudo -i -u test1
+psql
+
+
+
+===========SHOW CONNECTION INFORMATION============
+\conninfo
+
+SELECT * from pg_stat_activity;  #show active users connected
+SELECT * from pg_user; #list all users
+ALTER USER johndoe WITH CONNECTION LIMIT 2;  #number of smulaneous connections
+SELECT rolname, rolconnlimit FROM pg_roles #shows allowed conn limit per user\d
+
+
+====SWITCH DATABASE=======
+
+psql -d databasename
+
+OR 
+
+\connect DBNAME   #from within the psql commandline
+
+===========CREATE AND DESTROY THINGS================
+
+CREATE TABLE table_name (
+    column_name1 col_type (field_length) column_constraints,
+    column_name2 col_type (field_length),
+    column_name3 col_type (field_length)
+);
+
+INSERT INTO table_name (col-name-1, col-name-2, col-name-3) VALUES ('data1', 'data2', 'data3');  #Creates a row in the table
+
+DELETE FROM table_name WHERE col-name = 'data value';      #deletes a row from the database where col name is specified 
+
+
+ALTER TABLE table_name ADD column_name (datatype);	#creates a new column
+ALTER TABLE table_name DROP column_name;		#drops a column
+
+DROP TABLE table_name;					#drops a table
+
+
+
+
+===========EDIT THINGS================
+
+
+UPDATE playground SET type = 'new entry' WHERE color = 'yellow';
+
+ALTER DATABASE test1 OWNER TO test1;
+
+
+
+==============SEE THINGS===============
+
+\conninfo		#show username, database, and port
+
+\list #lists all databases
+\dt #lists all tables in the current database
+\du #list all users
+
+SELECT * FROM table_name;	#shows all columns from table
+
+===============RESTORE DATABASE=================
+
+Restoring is pretty easy:
+
+psql -U <username> -d <dbname> -1 -f <filename>.sql
+or
+
+/usr/bin/pg_restore --host localhost --port 5432 --username "name" --dbname "databasename" --no-password  --verbose "/home/tawanda/Downloads/colony.backup"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

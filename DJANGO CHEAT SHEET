@@ -1,0 +1,5 @@
+
+python manage.py startapp polls
+
+python manage.py makemigrations 	#to create migrations for those changes
+python manage.py migrate 		#to apply those changes to the database.
