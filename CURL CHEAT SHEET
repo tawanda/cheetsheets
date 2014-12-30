@@ -1,0 +1,6 @@
+curl http://127.0.0.1:8000/snippets/ \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -H "Accept: application/json" \
+ -d '{"pk": "1","title": "first post","code": "print hello world"}' \
+| python -m json.tool
