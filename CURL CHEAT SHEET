@@ -4,3 +4,52 @@ curl http://127.0.0.1:8000/snippets/ \
  -H "Accept: application/json" \
  -d '{"pk": "1","title": "first post","code": "print hello world"}' \
 | python -m json.tool
+
+
+curl http://127.0.0.1:8000/snippets/ \
+ -X GET \
+| python -m json.tool
+
+
+curl http://127.0.0.1:8000/snippets/8/ \
+ -X DELETE \
+| python -m json.tool
+
+
+####################### USING HTTPIE ##############################
+
+----------intro
+
+http PATCH api.example.com/person/1 X-API-Token:123 name=John email=john@example.org age:=29
+
+
+The following request is issued::
+
+    PATCH /person/1 HTTP/1.1
+    User-Agent: HTTPie/0.1
+    X-API-Token: 123
+    Content-Type: application/json; charset=utf-8
+
+    {"name": "John", "email": "john@example.org", "age": 29}
+
+----------post
+
+$ http POST example.com/posts/3 \
+    Origin:example.com  # :   HTTP headers
+    name="John Doe" \   # =   string
+    q=="search" \       # ==  URL parameters (?q=search)
+    age:=29 \           # :=  for non-strings
+    list:='[1,3,4]'     # :=  json
+    token=@token.txt \  # =@  read from file (text)
+    user:=@user.json \  # :=@ read from file (json)
+
+----------Forms
+
+$ http --form POST example.com \
+    name="John Smith" \
+    cv=@document.txt
+
+
+---------EXAMPLE-----------------
+
+ http POST http://127.0.0.1:8000/snippets/ 'title'='more new stuff' 'code'='more test code'
