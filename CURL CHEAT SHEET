@@ -8,7 +8,38 @@ curl http://127.0.0.1:8000/snippets/ \
 
 curl http://127.0.0.1:8000/snippets/ \
  -X GET \
+ -H "Accept: application/json" \
 | python -m json.tool
+
+
+curl http://127.0.0.1:8000/snippets/ \
+ -X GET \
+ -H "Accept: text/html" 
+
+
+curl http://127.0.0.1:8000/snippets/ \
+ -X GET \
+ -H "Accept: text/html,application/json" 
+
+
+----------cookies\\
+
+
+curl http://127.0.0.1:8000/snippets/ \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -H "Accept: text/html,application/json" \
+ -H "X-CSRFToken: 4yrCkYK3zmQZha3KrwtFQTqFBnyc4b9N" \
+ -H "Cookie: csrftoken=4yrCkYK3zmQZha3KrwtFQTqFBnyc4b9N" \
+ -u tawanda:admin \
+ -d '{"title": "first cookie post","code": "print hello world"}' 
+
+
+
+
+
+
+
 
 
 curl http://127.0.0.1:8000/snippets/8/ \
@@ -52,4 +83,28 @@ $ http --form POST example.com \
 
 ---------EXAMPLE-----------------
 
- http POST http://127.0.0.1:8000/snippets/ 'title'='more new stuff' 'code'='more test code'
+ http --timeout=3600 POST http://127.0.0.1:8000/snippets/ 'title'='more new stuff' 'code'='more test code'
+ 
+--------EXAMPLE 2 *************not working
+
+http --timeout=3600 POST http://127.0.0.1:8000/snippets/ \
+    Accept: text/html,application/xhtml+xml \
+    Cookie: sessionid=kk0b0zaqydq74ej0d6zxspr6b8df6g71; tabstyle=html-tab; csrftoken=4yrCkYK3zmQZha3KrwtFQTqFBnyc4b9N \
+    'title'='first cookie post'\
+    'code'='hellow world again'
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ http://localhost:63343/
