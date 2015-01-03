@@ -1,5 +1,11 @@
 LINUX CHEAT SHEET
 
+===========UBUNTU SPECIFIC===========
+
+sudo vim /usr/share/gnome/applications/defaults.list #change default applications
+
+
+
 
 ===========LOGINS===========
 

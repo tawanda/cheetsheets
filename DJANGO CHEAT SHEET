@@ -3,3 +3,77 @@ python manage.py startapp polls
 
 python manage.py makemigrations 	#to create migrations for those changes
 python manage.py migrate 		#to apply those changes to the database.
+
+
+================VIRTUAL ENV WRAPPER=========================
+For bash, put stuff in ~/.bashrc, and make ~/.bash_profile source it.
+For zsh, put stuff in ~/.zshrc, which is always executed.
+
+[Note: This is assuming you care only about interactive shells (shells you can type at). If further you ever use non-interactive shells (like “ssh [host] [command]” which executes [command] on [host] and logs out immediately) and there is something you absolutely absolutely want executed first even for these cases (think carefully: they can interfere in strange ways and you may be able to do without them), then you can put such stuff in ~/.zshenv. For bash, put them in a file and set the value of BASH_ENV to the filename.]
+
+
+Shell Startup File
+Add three lines to your shell startup file (.bashrc, .profile, etc.) to set the location where the virtual environments should live, the location of your development project directories, and the location of the script installed with this package:
+
+export WORKON_HOME=$HOME/sandbox/virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+
+
+
+After editing it, reload the startup file (e.g., run source ~/.bashrc).
+
+
+---Basic Usage---
+
+Create a virtual environment:
+
+$ mkvirtualenv venv
+This creates the venv folder inside ~/Envs.
+
+Work on a virtual environment:
+
+$ workon venv
+virtualenvwrapper provides tab-completion on environment names. It really helps when you have a lot of environments and have trouble remembering their names.
+
+workon also deactivates whatever environment you are currently in, so you can quickly switch between environments.
+
+Deactivating is still the same:
+
+$ deactivate
+
+To delete:
+
+$ rmvirtualenv venv
+
+Other useful commands
+
+lsvirtualenv
+List all of the environments.
+
+cdvirtualenv
+Navigate into the directory of the currently activated virtual environment, so you can browse its site-packages, for example.
+
+cdsitepackages
+Like the above, but directly into site-packages directory.
+
+lssitepackages
+Shows contents of site-packages directory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
