@@ -1,4 +1,7 @@
 LINUX CHEAT SHEET
+============LIST ALL DRIVES CONNECTED TO COMPUTER ==============
+ df -h
+
 
 ===========UBUNTU SPECIFIC===========
 
