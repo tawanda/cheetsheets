@@ -1,0 +1,15 @@
+================PORTS=======================
+
+you can use netstat to see which process is listening on which port.
+
+I use this command to have a full detail :
+
+sudo netstat -taupen
+if you need to know exactly which one is listening on port 8000 you can use this :
+
+sudo netstat -tapen | grep ":8000 "
+There is no process that can hide from netstat.
+
+then this command will list you the application used by that port with PID.
+
+lsof -i :8000
