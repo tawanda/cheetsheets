@@ -1,5 +1,37 @@
 OPERATORS REF:: http://docs.mongodb.org/manual/reference/operator/query/
 
+=============================backup/restore==================
+
+
+
+First stop the mongod instance:
+
+service mongodb stop
+
+Go to the backup directory (or any directory where you want to store the mongodb backup), and execute the following mongodump command. The –dbpath indicates the location of the mongodb database files.
+
+cd /backup
+
+mongodump 
+
+Finally, start the mongod instance;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===========================database size========================================
 
 REF:  https://blog.serverdensity.com/mongodb-monitoring-keep-in-it-ram/
