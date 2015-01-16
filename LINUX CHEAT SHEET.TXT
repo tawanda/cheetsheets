@@ -2,6 +2,16 @@ LINUX CHEAT SHEET
 ============LIST ALL DRIVES CONNECTED TO COMPUTER ==============
  df -h
 
+=============UBUNTU RESTORE DESKTOP====
+
+export DISPLAY=:0
+ccsm    # enable unity if disabled
+
+sudo rm -rf ~/config
+sudo rm -rf ~/compiz
+sudo restart lightdm
+
+
 
 ===========UBUNTU SPECIFIC===========
 
