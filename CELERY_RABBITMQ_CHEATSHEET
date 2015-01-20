@@ -1,0 +1,4 @@
+============INSTALL RABBIT==========
+sudo atp-get install rabbitmq-server
+sudo rabbitmq-plugins enable rabbitmq_management  #enable the local host manager
+sudo service rabbitmq-server restart              #then restart the server
