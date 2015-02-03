@@ -40,6 +40,9 @@ psql
 SELECT * from pg_stat_activity;  #show active users connected
 SELECT * from pg_user; #list all users
 ALTER USER johndoe WITH CONNECTION LIMIT 2;  #number of smulaneous connections
+ALTER USER django CREATEDB;   # make a user be able to create a database
+
+
 SELECT rolname, rolconnlimit FROM pg_roles #shows allowed conn limit per user\d
 
 
