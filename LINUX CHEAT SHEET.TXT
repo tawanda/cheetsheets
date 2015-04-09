@@ -59,3 +59,71 @@ usermod -d /home/newHomeDir -m newUsername
 
 sudo vim /etc/gnome/defaults.list	#change default programs
 
+
+===================FIND================================
+
+-------------- Find Files Using Name-----------------
+
+This is a basic usage of the find command. This example finds all files with name — MyCProgram.c in the current directory and all its sub-directories.
+
+# find -name "MyCProgram.c"
+
+------------ Inverting the match.-------------------
+
+Shows the files or directories whose name are not MyCProgram.c .Since the maxdepth is 1, this will look only under current directory.
+
+# find -maxdepth 1 -not -iname "MyCProgram.c
+
+
+
+--------------------- Find Files Based on file-type using option -type-----------------
+
+Find only the socket files.
+
+# find . -type s
+
+Find all directories
+
+# find . -type d
+
+Find only the normal files
+
+# find . -type f
+
+Find all the hidden files
+
+# find . -type f -name ".*"
+
+Find all the hidden directories
+
+# find -type d -name ".*"
+
+
+
+
+------------------Limit Search To Specific Directory Level Using mindepth and maxdepth--------------------
+
+Find the passwd file under all sub-directories starting from root directory.
+
+# find / -name passwd
+
+Find the passwd file under root and one level down. (i.e root — level 1, and one sub-directory — level 2)
+
+# find -maxdepth 2 -name passwd
+
+
+Find the passwd file under root and two levels down. (i.e root — level 1, and two sub-directories — level 2 and 3 )
+
+# find / -maxdepth 3 -name passwd
+
+
+Find the password file between sub-directory level 2 and 4.
+
+# find -mindepth 3 -maxdepth 5 -name passwd
+
+
+------------------Executing Commands on the Files Found by the Find Command----------------
+
+You can specify inode number on a find command as shown below. In this example, find command renames a file using the inode number.
+
+# find -iname current_file_name.txt -exec mv {} new_test_file_name.txt
