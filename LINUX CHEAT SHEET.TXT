@@ -129,6 +129,6 @@ Find the password file between sub-directory level 2 and 4.
 ------------------Executing Commands on the Files Found by the Find Command----------------
 
 You can specify inode number on a find command as shown below. In this example, find command renames a file using the inode number.
-***** always 
+***** always place the \; escape sequence
 
 # find -iname current_file_name.txt -exec mv {} new_test_file_name.txt \;
