@@ -1,3 +1,32 @@
+==========navigation==================
+
+To move to end of file just type G (press ESC and type capital G):
+G
+
+
+You can jump back to beginning of file by typing any one of the following command
+1G
+
+OR
+gg
+
+You can jump to line number 700 (press ESC type 700G)
+700G
+
+======================edittig==========================
+
+delete everything after coursor
+dG
+
+
+
+
+
+
+
+
+==========searching====================
+
 The :substitute command searches for a text pattern, and replaces it with a text string. 
 
 :%s/foo/bar/g
