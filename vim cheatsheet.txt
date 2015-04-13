@@ -9,6 +9,8 @@ To display line numbers along the left side of a window, type any one of the fol
 or
 :set nu
 
+To turn off line number again enter the same command:
+:set nu!
 
 ==========navigation==================
 G
