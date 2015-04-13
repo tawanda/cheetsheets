@@ -1,22 +1,33 @@
 ==========navigation==================
-
-To move to end of file just type G (press ESC and type capital G):
 G
+To move to end of file just type G (press ESC and type capital G):
 
-
-You can jump back to beginning of file by typing any one of the following command
 1G
-
 OR
 gg
+You can jump back to beginning of file by typing any one of the following command
 
-You can jump to line number 700 (press ESC type 700G)
 700G
+You can jump to line number 700 (press ESC type 700G)
 
+w 
+Move forward to the beginning of a word.
+3w 
+Move forward three words.
+b 
+Move backward to the beginning of a word.
+3b 
+Move backward three words.
+$ 
+Move to the end of the line.
+0 
+Move to the beginning of the line.
+^ 
+Move to the first non-blank character of the line.
 ======================edittig==========================
-
-delete everything after coursor
 dG
+delete everything after coursor
+
 
 
 
