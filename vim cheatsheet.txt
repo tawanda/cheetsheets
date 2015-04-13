@@ -1,3 +1,15 @@
+===========environment=================
+
+turn syntax on
+:syntax on
+
+To display line numbers along the left side of a window, type any one of the following command while using text editor:
+:set number
+
+or
+:set nu
+
+
 ==========navigation==================
 G
 To move to end of file just type G (press ESC and type capital G):
