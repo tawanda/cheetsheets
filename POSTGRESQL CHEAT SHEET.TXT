@@ -1,4 +1,14 @@
 =========SET UP================================
+The installation procedure created a user account called postgres that is associated with the default Postgres role. In order to use Postgres, we'll need to log into that account. You can do that by typing:
+
+sudo -i -u postgres
+You will be asked for your normal user password and then will be given a shell prompt for the postgres user.
+
+You can get a Postgres prompt immediately by typing:
+
+psql
+
+
 
 create user username with password 'password';
 create database databasename with owner username;
