@@ -35,7 +35,15 @@ git rm '*.txt'
 
 #git rm command which will not only remove the actual files from disk, but will also stage the removal of the files for us.
 
+--- renove a previously committed dir----------
 
+The full process would look like this:
+
+$ echo '.idea' >> .gitignore
+$ git rm -r --cached .idea
+$ git add .gitignore
+$ git commit -m '(some message stating you added .idea to ignored entries)'
+$ git push
 
 
 -----------------BRANCHING---see also conflict resolution & how to save your branch remotley below-----------------------
