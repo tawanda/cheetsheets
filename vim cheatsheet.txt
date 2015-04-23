@@ -42,14 +42,6 @@ Move to the first non-blank character of the line.
 dG
 delete everything after coursor
 
-
-
-
-
-
-
-
-
 ==========searching====================
 
 The :substitute command searches for a text pattern, and replaces it with a text string. 
@@ -72,3 +64,69 @@ This may be wanted after using :set ignorecase to make searches case insensitive
 
 u: undo last change (can be repeated to undo preceding commands)
 Ctrl-R: Redo 
+
+=========================REGISTERS================================
+
+I was pleased when I discovered the 0 register. If you yank text without assigning it to a particular register, then it will be assigned to the 0 register, as well as being saved in the default " register. The difference between the 0 and " registers is that 0 is only populated with yanked text, whereas the default register is also populated with text deleted using d/D/x/X/c/C/s/S commands.
+
+I find this useful when I want to copy some text, delete something and replace it with the copied text. The following steps illustrate an example:
+
+Yank the text you want to copy with y - this text is saved in " and 0 registers
+Delete the text you want to replace with d - this text is saved in " register
+Paste the yanked text with "0p
+
+
+---------------------------------------
+ctrl-r follwed by the register lets you paste the contents of a register without leaving insert mode.
+
+Ctrl + r" Put from the default register
+
+Ctrl + rd Put from register d
+
+
+-----------------advanced-----------------
+Let's say you are dealing with a tab-delimited value file as such:
+
+    ID  Df  %Dev    Lambda
+    1   0   0.000000    0.313682
+    2   1   0.023113    0.304332
+    3   1   0.044869    0.295261
+    4   1   0.065347    0.286460
+    5   1   0.084623    0.277922
+    6   1   0.102767    0.269638
+    7   1   0.119845    0.261601
+Now you decide that you need to add a percentage sign at the end of the %Dev field. We'll make a simple macro in the (arbitrarily selected) m register as follows:
+
+qm
+
+EE: Go to the end of the 3rd column.
+
+a: Insert mode to append to the end of this column.
+
+%: Type the percent sign we want to add.
+
+<ESC>: Get back into command mode.
+
+j0: Go to beginning of next line.
+
+q: Stop recording macro
+
+We can now just type @m to run this macro on the current line. Furthermore, we can type 100@m to do this 100 times! Life's looking pretty good.
+
+At this point you should be saying, "BUT WAIT, WHAT THE HECK DOES THIS HAVE TO DO WITH REGISTERS?"
+
+Excellent point. Let's investigate what is in the contents of the m register by typing "mp. We then get the following:
+
+    EEa%<ESC>j0
+At first this looks like you accidentally opened a binary file in notepad, but upon second glance, it's the exact sequence of characters in our macro!
+
+You are a curious person, so let's do something interesting and edit this line of text to insert a "!" instead of boring old "%".
+
+    EEa!<ESC>j0
+Then let's yank this into the n register by typing B"nyE. Then, just for kicks, let's run the n macro on a line of our data using @n....
+
+OMG, IT ADDED A "!"
+
+Essentially, running a macro is like pressing the exact sequence of keys in that macro's register. If that isn't a cool register trick, I'll eat my hat.
+
+-----
