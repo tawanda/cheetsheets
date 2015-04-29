@@ -1,0 +1,14 @@
+Smart rounding
+Another use of binary operators is rounding. Because they treat numbers as integers, all of them cut off the decimal part.
+ ~~12.34 // 12
+ 
+Smart division by power of 2
+The right shift a >> b operator is actually same as a/(2^b).
+
+Conditions can be grouped in brackets and negated by NOT:
+
+var x = 15
+ 
+if ( !(x<10 || x>20) ) {
+  alert('The number is *inside* 10..20')
+}
