@@ -1,10 +1,13 @@
 Smart rounding
 Another use of binary operators is rounding. Because they treat numbers as integers, all of them cut off the decimal part.
  ~~12.34 // 12
+
+-------------------------------------------------------------------
  
 Smart division by power of 2
 The right shift a >> b operator is actually same as a/(2^b).
 
+----------------------------if---------------------------------------
 Conditions can be grouped in brackets and negated by NOT:
 
 var x = 15
@@ -12,3 +15,58 @@ var x = 15
 if ( !(x<10 || x>20) ) {
   alert('The number is *inside* 10..20')
 }
+
+------------------------switch---------------------------------------
+var x = 2
+
+switch(x) {
+  case 1:
+    alert('never executes')
+    break
+
+  case 2:   
+    alert('x === 2')   // <-- start
+    break              // stop!
+
+  case 3:
+    alert('x === 3')
+    break
+}
+
+---------------------------Special characters-------------------------
+
+Here is a list of special characters and sequences:
+
+Character	Description
+\b	Backspace
+\f	Form feed
+\n	New line
+\r	Carriage return
+\t	Tab
+\uNNNN	The Unicode character which code is given by the four hexadecimal digits NNNN. 
+       For example, \u00A9 is the Unicode sequence for the copyright symbol.
+
+Note that strings in JavaScript are Unicode internally.
+
+The newline symbol is by far the most popular:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
