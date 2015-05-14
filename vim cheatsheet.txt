@@ -98,17 +98,39 @@ There are nine types of registers:
 
 Most used registers
 -------------------
-The 0 register If you yank text without assigning it to a particular register, 
-    then it will be assigned to the 0 register
-    
-The * register is my system clipboard
-The . register stores what I just typed
+1. Unnamed register ""
+Vim fills this register with text deleted with the "d", "c", "s", "x" commands
+or copied with the yank "y" command,
+
+2. Numbered registers "0 to "9
+Vim fills these registers with text from yank and delete commands.
+Numbered register 0 contains the text from the most recent yank command,
+Numbered register 1 contains the text deleted by the most recent delete or change command
+With each successive deletion or change, Vim shifts the previous contents of register 1 into register 2,
+2 into 3, and so forth, losing the previous contents of register 9.
+
+
+
+4. Named registers "a to "z or "A to "Z		
+Vim fills these registers only when you say so.
 
 When I'm working I sometimes find myself rearranging code, but I don't want to lose it and may want
 to paste it multiple times. This is the perfect time to use a named register to store chunks of code.
 
 Typing "ayy will yank the current line into register a. 
 Typing "ap will put it somewhere else.
+
+5. Read-only registers ":, "., "% and "#
+The . register stores what I just typed
+"%	Contains the name of the current file.
+"#	Contains the name of the alternate file
+":	Contains the most recent executed command-line
+
+7. Selection and drop registers "*, "+ and "~ 
+The * register is my system clipboard
+
+The read-only "~ register stores the dropped text from the last drag'n'drop
+operation.
 
 Viminfo
 -------
