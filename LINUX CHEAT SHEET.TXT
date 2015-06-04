@@ -177,3 +177,51 @@ You can specify inode number on a find command as shown below. In this example, 
 ***** always place the \; escape sequence
 
 # find -iname current_file_name.txt -exec mv {} new_test_file_name.txt \;
+
+
+
+========== GREP ==================
+options
+-i case insensitive
+-r recursive into subdirectories
+-n display line numbers where string is found
+-w If you want to search for a word, and to avoid it to match the substrings 
+-v invert match
+
+# Search for the given string in a single file
+grep "literal_string" filename
+
+# Search for the given string in a single file case insensitive
+grep -i "literal_string" filename
+
+
+# Search for the given string in all files
+grep "literal_string" *
+
+# Search for the given string in all files recursive into subdirectories
+grep -r "literal_string" *
+
+# Search for the given string in all files recursive into subdirectories case insensitive 
+grep -ir "literal_string" *
+
+# Checking for the given string in multiple files eg we have file_1.txt file_2.txt file_3.ini
+grep "literal_string" file_*
+
+--------------regex---------------
+
+Syntax:
+grep "REGEX" filename
+
+grep "lines.*empty" demo_file
+
+
+
+
+
+
+
+
+
+
+
+
