@@ -241,8 +241,29 @@ sed s/day/night/ old
 # test SED expressions in the terminal using echo
 echo 'this is a day' | sed s/day/night/ 
 
-#test multiline global replacement 
-echo 'this is a day \\n this is also a day' | sed s/day/night/g 
+# sed is line oriented,it changes only the first occurrence on each line 
+# test multiline global replacement try with and without the 'g'
+echo 'this is a day \n this is also a day and another day' | sed s/day/night/g 
+
+-----changing the deliminator-------
+# Pick one you like. As long as it's not in the string you are looking for, anything goes. 
+# And remember that you need three delimiters. 
+# If you get a "Unterminated `s' command" it's because you are missing one of them.
+
+# eg you want to change  /usr/local/bin to /common/bin 
+
+# default
+sed 's/\/usr\/local\/bin/\/common\/bin/' <old >new
+
+#use an underline instead of a slash as a delimiter:
+sed 's_/usr/local/bin_/common/bin_' filename
+
+# use colons:
+sed 's:/usr/local/bin:/common/bin:' filename
+
+#use the "|" character.
+sed 's|/usr/local/bin|/common/bin|' filename
+
 
 
 
