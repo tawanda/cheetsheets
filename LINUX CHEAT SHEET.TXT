@@ -181,12 +181,16 @@ You can specify inode number on a find command as shown below. In this example, 
 
 
 ========== GREP ==================
+Global Regular ExPression search
+
 options
 -i case insensitive
 -r recursive into subdirectories
 -n display line numbers where string is found
 -w If you want to search for a word, and to avoid it to match the substrings 
 -v invert match
+-l print only names of FILEs containing matches | use it if you are piping grep results to another program
+
 
 # Search for the given string in a single file
 grep "literal_string" filename
@@ -215,7 +219,30 @@ grep "REGEX" filename
 grep "lines.*empty" demo_file
 
 
+-------------search and replace-----
 
+# first search using grep and then pass those search results to sed which searches through them and replaces
+# string1 with string2
+grep -rl matchstring somedir/ | xargs sed -i 's/string1/string2/g'
+
+
+==============SED================
+Stream EDitor
+
+-----------substitute-------
+
+# changing "day" in the "old" file to "night" in the "new" file, 
+# the 'new' file will be created and the 'old' file remains untouched
+sed s/day/night/ old >new
+
+#This replaces it in the current file
+sed s/day/night/ old
+
+# test SED expressions in the terminal using echo
+echo 'this is a day' | sed s/day/night/ 
+
+#test multiline global replacement 
+echo 'this is a day \\n this is also a day' | sed s/day/night/g 
 
 
 
