@@ -1,4 +1,4 @@
 cheetsheets
 ===========
 
-all my cheat sheets
+All my cheat sheets
