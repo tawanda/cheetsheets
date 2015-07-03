@@ -3,6 +3,16 @@ LINUX CHEAT SHEET
  df -h
 
 ================GET THE SIZE OF A FILE IN MB =====================
+------USING ls---------
+
+ls -l --block-size=M will give you a long format listing (needed to actually see the file size) and round file sizes up to the nearest MiB.
+
+If you want MB (10^6 bytes) rather than MiB (2^20 bytes) units, use --block-size=MB instead.
+
+If you don't want the M suffix attached to the file size, you can use something like --block-size=1M. Thanks Stéphane Chazelas for suggesting this.
+
+------USING du----------
+
 du -h log.txt
 
 This command would display the output "12M log.txt"
