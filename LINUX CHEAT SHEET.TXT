@@ -37,25 +37,25 @@ send  to  someone with verbosity (upload)
 
 scp -v /local/path/tofile username@10.0.0.123:~/path/to/destination/in/home/dir
 
-download file from remote connection
+---
+Download file from remote connection
 
 scp username@10.0.0.123:/path/to/file.txt /local/path/to/destination
 
-You can automatically figure out where you're logged in from by checking the environment variables 
-SSH_CONNECTION and/or SSH_CLIENT. SSH_CONNECTION for example shows the client address,
-the outgoing port on the client, the server address and the incoming port on the server. 
-See section ENVIRONMENT in man ssh
+EXAMPLES
+Copy the file "foobar.txt" from a remote host to the local host home directiory
 
-So, if you want to copy a file from the server to the client from which you're logged in from, 
-the following (which infers the client ip by taking the first part of SSH_CONNECTION) should work:
+$ scp your_username@remotehost.edu:foobar.txt ~/
 
-scp /path/to/file $(echo $SSH_CONNECTION | cut -f 1 -d ' '):~/local/path/to/file
+Copy the file "foobar.txt" from a remote host to the local host current directory
 
+$ scp your_username@remotehost.edu:foobar.txt .
 
-Copy the file "foobar.txt" from a remote host to the local host
+same as above using private key
 
-$ scp your_username@remotehost.edu:foobar.txt /some/local/directory
+$ scp -i /home/user/key.pem your_username@remotehost.edu:foobar.txt .
 
+-----
 Copy the file "foobar.txt" from the local host to a remote host
 
 $ scp foobar.txt your_username@remotehost.edu:/some/remote/directory
@@ -82,6 +82,17 @@ $ scp your_username@remotehost.edu:/some/remote/directory/\{a,b,c\}
 
 $ scp your_username@remotehost.edu:~/\{foo.txt,bar.txt\}
 
+------------THE FOLLOWING WILL NOT WORK IF YOUR ROUTER IS DOES NOT HAVE PORT 22 OPEN-------
+
+You can automatically figure out where you're logged in from by checking the environment variables 
+SSH_CONNECTION and/or SSH_CLIENT. SSH_CONNECTION for example shows the client address,
+the outgoing port on the client, the server address and the incoming port on the server. 
+See section ENVIRONMENT in man ssh
+
+So, if you want to copy a file from the server to the client from which you're logged in from, 
+the following (which infers the client ip by taking the first part of SSH_CONNECTION) should work:
+
+scp /path/to/file $(echo $SSH_CONNECTION | cut -f 1 -d ' '):~/local/path/to/file
 
 =============LOGINS==================
 
