@@ -2,6 +2,17 @@ LINUX CHEAT SHEET
 ============LIST ALL DRIVES CONNECTED TO COMPUTER ==============
  df -h
 
+================GET THE SIZE OF A FILE IN MB =====================
+du -h log.txt
+
+This command would display the output "12M log.txt"
+
+If you want to see the total size of multiple files, type a command similar to the below command.
+
+du -ch *.txt
+
+In the above example, the command would list every .txt file in the current directory, display the size of each of those files as it was listing the files, and the total of all the files combined.
+
 =============UBUNTU RESTORE DESKTOP====
 
 export DISPLAY=:0
