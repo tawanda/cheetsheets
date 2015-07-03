@@ -13,7 +13,7 @@ show profile	Print the five most recent operations that took 1 millisecond or mo
 =============================backup/restore==================
 
 
-
+---backup----
 First stop the mongod instance:
 
 service mongodb stop
@@ -26,27 +26,15 @@ mongodump
 
 Finally, start the mongod instance;
 
+---restore---
+#http://docs.mongodb.org/manual/tutorial/backup-with-mongodump/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+mongorestore backupfolder/
 
 
 ===========================database size========================================
 
 REF:  https://blog.serverdensity.com/mongodb-monitoring-keep-in-it-ram/
-
-
 
 The MongoDB console provides an easy way to look at the data and index sizes. The db.stats() command will analyse the database and give you a range of statistics. The output is provided in bytes for dataSize and indexSize. It may take a few seconds for this command to return for large databases and in the most recent versions of MongoDB, it will not block.
 
@@ -106,17 +94,6 @@ For larger data sets like this, a good rule is to ensure you have enough memory 
 show collections
 
 use databse_name
-
-
-
-
-
-
-
-
-
-
-
 
 ================================
 The sort function requires that the entire sort be able to complete within 32 megabytes. When the sort option consumes more than 32 megabytes, MongoDB will return an error.
@@ -210,9 +187,6 @@ Consider that the inventory collection includes the following documents:
 The following example selects all documents where the memos contains an array whose first element (i.e. index is 0) is a document that contains the field by whose value is 'shipping':
 
 db.inventory.find( { 'memos.0.by': 'shipping' } 
-
-
-
 
 
 
