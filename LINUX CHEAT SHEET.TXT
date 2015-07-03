@@ -51,9 +51,9 @@ Copy the file "foobar.txt" from a remote host to the local host current director
 
 $ scp your_username@remotehost.edu:foobar.txt .
 
-same as above using private key
+same as above using private key and verbose
 
-$ scp -i /home/user/key.pem your_username@remotehost.edu:foobar.txt .
+$ scp -v -i /home/user/key.pem your_username@remotehost.edu:foobar.txt .
 
 -----
 Copy the file "foobar.txt" from the local host to a remote host
