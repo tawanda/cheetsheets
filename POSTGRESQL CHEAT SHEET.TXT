@@ -13,6 +13,10 @@ psql
 create user username with password 'password';
 create database databasename with owner username;
 
+OR IF DATABASE EXISTS:
+
+GRANT ALL PRIVILEGES ON DATABASE databasename TO username;
+
 
 log in 
 
