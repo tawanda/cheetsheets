@@ -117,8 +117,14 @@ or
 
 /usr/bin/pg_restore --host localhost --port 5432 --username "name" --dbname "databasename" --no-password  --verbose "/home/tawanda/Downloads/colony.backup"
 
+=============== QUERYING =======
 
+SELECT COUNT(*) FROM  tablename; #counts rows in a table
 
+SELECT column FROM tablename LIMIT 5;  #limits results to 5
+
+# alternative ASC
+SELECT first_name FROM accounts_user ORDER BY date_created DESC LIMIT 50; 
 
 
 
