@@ -320,7 +320,29 @@ sed 's|/usr/local/bin|/common/bin|' filename
 > tail -n+2 example.txt
 
 
+==============SCREEN================
+Command: “Ctrl-a”
 
+Screen uses the command “Ctrl-a” that’s the control key and a lowercase “a”  as a signal to send commands to screen instead of the shell.
+
+help page
+“Ctrl-a” then “?”
+
+#detach from current screen
+“Ctrl-a” then ctrl-d
+
+
+#list screens, This can also show you which screen you are attached to
+screen -r 
+
+There are several suitable screens on:
+	10432.pts-8.ip-10-94-3-171	(07/08/2015 12:31:17 PM)	(Detached)
+	11717.pts-0.ip-10-94-3-171	(06/25/2015 12:02:47 PM)	(Detached)
+	17029.pts-0.ip-10-94-3-171	(06/11/2015 01:02:18 PM)	(Detached)
+
+ screen -r 10432.pts-8.ip-10-94-3-176  # Connect to the screen 10432.pts-8.ip-10-94-3-171
+ 
+ 
 
 
 
