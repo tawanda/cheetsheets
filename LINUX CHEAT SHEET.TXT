@@ -301,6 +301,23 @@ sed 's:/usr/local/bin:/common/bin:' filename
 sed 's|/usr/local/bin|/common/bin|' filename
 
 
+=============== TAIL =======================
+1. Display last 10 lines 
+
+#By default, the tail command prints the last 10 lines from the file. 
+> tail example.txt
+
+2. Display last N lines 
+
+#Use the -n option to print the last n lines from the file. The following example prints the last 2 lines from the file: 
+
+> tail -n2 example.txt
+
+
+3. Print lines from the Nth line 
+
+#You can print lines starting from the Nth line in a file. The following example prints lines from the 2nd line.
+> tail -n+2 example.txt
 
 
 
