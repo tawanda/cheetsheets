@@ -328,6 +328,16 @@ Screen uses the command “Ctrl-a” that’s the control key and a lowercase �
 help page
 “Ctrl-a” then “?”
 
+#To create a new window, you just use 
+“Ctrl-a” “c”.
+
+#Switching Between Windows
+ “Ctrl-a” “n”
+ 
+#Switching to previous window.
+“Ctrl-a” “p” 
+
+
 #detach from current screen
 “Ctrl-a” then ctrl-d
 
@@ -340,9 +350,23 @@ There are several suitable screens on:
 	11717.pts-0.ip-10-94-3-171	(06/25/2015 12:02:47 PM)	(Detached)
 	17029.pts-0.ip-10-94-3-171	(06/11/2015 01:02:18 PM)	(Detached)
 
- screen -r 10432.pts-8.ip-10-94-3-176  # Connect to the screen 10432.pts-8.ip-10-94-3-171
+# Connect to the screen 10432.pts-8.ip-10-94-3-171
+screen -r 10432.pts-8.ip-10-94-3-176  
  
- 
+#Remove dead screens with (untested)
+'screen -wipe 17029.pts-0.ip-10-94-3-171'.
+
+
+# Using “Ctrl-a” “H”, creates a running log of the session.
+
+#Locking Your Screen Session
+If you need to step away from your computer for a minute, you can lock your screen session using “Ctrl-a” “x”.  This will require a password to access the session again.
+
+Screen used by root <jeffh>.
+Password:
+
+#you can use “Ctrl-a” “k”.  You should get a message if you want to kill the screen.
+
 
 
 
