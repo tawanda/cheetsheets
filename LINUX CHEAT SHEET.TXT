@@ -367,7 +367,10 @@ Password:
 
 #you can use “Ctrl-a” “k”.  You should get a message if you want to kill the screen.
 
-
+----scrolling in a screen session-----
+Hit your screen prefix combination (C-a, control+A by default), then hit 'Escape'.
+Use the arrow keys to move up/down as needed.
+When you're done, hit the 'Return' key twice, you will be back to the end of the scroll buffer.
 
 
 
