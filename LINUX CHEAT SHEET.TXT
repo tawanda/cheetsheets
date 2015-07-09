@@ -254,6 +254,12 @@ grep "REGEX" filename
 
 grep "lines.*empty" demo_file
 
+#to use special characters escape them
+ grep 'INFO\|ERROR\|WARNING' demo_file.log
+ 
+#You don't need the escapes when you use the extended regex (-E)option
+ grep -E 'INFO|ERROR|WARNING' demo_file.log
+
 
 -------------search and replace-----
 
