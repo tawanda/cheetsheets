@@ -64,6 +64,18 @@ This may be wanted after using :set noignorecase to make searches case sensitive
 Change each 'foo' (case sensitive) to 'bar'; ask for confirmation.
 This may be wanted after using :set ignorecase to make searches case insensitive.
 
+------------alternative syntax---------------
+For url's you can use a different deliminator
+
+#','
+:%s,foo/bar/baz,foo/bar/boz,g 
+
+OR
+
+#':'
+%s:old/old:/old/new:g
+
+==========undo=================================================
 
 u: undo last change (can be repeated to undo preceding commands)
 Ctrl-R: Redo 
