@@ -198,3 +198,11 @@ OMG, IT ADDED A "!"
 Essentially, running a macro is like pressing the exact sequence of keys in that macro's register. If that isn't a cool register trick, I'll eat my hat.
 
 -----
+================recording=============
+You start recording by q<letter> and you can end it by typing q again.
+
+Recording is a really useful feature of Vim.
+
+It records everything you type. You can then replay it simply by typing @<letter>. 
+Record search, movement, replacement...
+
