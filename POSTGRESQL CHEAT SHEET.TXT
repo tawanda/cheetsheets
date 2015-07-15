@@ -97,6 +97,12 @@ UPDATE playground SET type = 'new entry' WHERE color = 'yellow';
 ALTER DATABASE test1 OWNER TO test1;
 
 
+=========== intert multiple rows========
+INSERT INTO table_name (date_created, date_updated, created_by_id, updated_by_id, currency, amount, availability_status, company_id) 
+SELECT ((now() at time zone 'utc'), (now() at time zone 'utc'), 457, 457, 'ZAR', 5, 0, 184)
+FROM generate_series(1,5)
+
+
 
 ==============SEE THINGS===============
 
