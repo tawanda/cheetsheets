@@ -10,6 +10,11 @@ show roles	Print a list of all roles, both user-defined and built-in, for the cu
 show profile	Print the five most recent operations that took 1 millisecond or more. See documentation on the database profiler for more information.
 
 
+============================basics=========================
+
+db.collection.find().limit(1).pretty()
+
+
 =============================backup/restore==================
 
 
