@@ -11,8 +11,8 @@ show profile	Print the five most recent operations that took 1 millisecond or mo
 
 
 ============================basics=========================
-LINK(http://docs.mongodb.org/manual/tutorial/query-documents/)
-
+http://docs.mongodb.org/manual/tutorial/query-documents/)
+http://docs.mongodb.org/manual/reference/sql-comparison/
 db.collection.find().limit(1).pretty()
 
 
