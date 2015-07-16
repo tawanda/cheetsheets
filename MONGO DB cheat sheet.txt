@@ -11,9 +11,23 @@ show profile	Print the five most recent operations that took 1 millisecond or mo
 
 
 ============================basics=========================
-http://docs.mongodb.org/manual/tutorial/query-documents/)
+http://docs.mongodb.org/manual/tutorial/query-documents/
 http://docs.mongodb.org/manual/reference/sql-comparison/
+http://docs.mongodb.org/manual/reference/operator/query/regex/#op._S_regex
+
+
 db.collection.find().limit(1).pretty()
+
+db.collection.find({'mobile_number': {$exists: true}}).limit(1).pretty()
+
+
+----deleting---------
+#remove all
+db.collections.remove({})
+
+#remove specific
+db.users.remove( { status: "D" } )
+
 
 
 =============================backup/restore==================
