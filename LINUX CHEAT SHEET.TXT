@@ -365,6 +365,21 @@ screen -r 10432.pts-8.ip-10-94-3-176
 
 # Using “Ctrl-a” “H”, creates a running log of the session.
 
+-------naming and listing sessions, windows----------
+You can name a session when starting it with the -S name option. From within a running screen, you can change it by typing CTRL-a, :sessionname name. You can view running screen sessions with screen -ls, and connect to one by name with screen -xS name.
+
+Within a single screen session, you can also name each window. Do this by typing CTRL-a, A then the name you want. You can view an interactive list of named windows by typing CTRL-a, ", and select the one you want to switch to from that list.
+
+Naming both screens and terminals within screens is really helpful for remembering what they are and why you started them in the first place.
+
+
+
+
+
+
+
+
+
 #Locking Your Screen Session
 If you need to step away from your computer for a minute, you can lock your screen session using “Ctrl-a” “x”.  This will require a password to access the session again.
 
