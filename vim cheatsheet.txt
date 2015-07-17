@@ -15,6 +15,11 @@ To turn off line number again enter the same command:
 To turn off vims indenting when pasting 
 :set paste
 
+=======================add a word to spell file==================
+
+Type this over the highlighted word
+zg
+
 ==========navigation==================
 G
 To move to end of file just type G (press ESC and type capital G):
