@@ -20,6 +20,9 @@ To turn off vims indenting when pasting
 Type this over the highlighted word
 zg
 
+For Vim to suggest a list of alternatives that it thinks may be correct type:
+z=
+
 ==========navigation==================
 G
 To move to end of file just type G (press ESC and type capital G):
