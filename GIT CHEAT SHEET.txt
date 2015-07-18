@@ -46,6 +46,24 @@ $ git commit -m '(some message stating you added .idea to ignored entries)'
 $ git push
 
 
+----------if you added the directory to the repo--------
+
+Remove directory from git and local
+
+You could checkout 'master' with both directories;
+
+git rm -r one-of-the-directories
+git commit -m "Remove duplicated directory"
+git push origin master
+Remove directory from git but NOT local
+
+remove this directory from git but not delete it entirely from the filesystem (local)
+
+git rm -r --cached myFolder
+
+
+******** you need to git add -A afterwards and commit**********
+
 -----------------BRANCHING---see also conflict resolution & how to save your branch remotley below-----------------------
 
 git branch gitcheat  	#make the new branch
