@@ -64,6 +64,20 @@ git rm -r --cached myFolder
 
 ******** you need to git add -A afterwards and commit**********
 
+
+======== Push a new local branch to a remote Git repo and track it too ========
+
+
+git checkout -b new_branch_name   # this creates a new local branch from the one you are currently on
+... edit files, add and commit ...
+git push -u origin new_branch_name # this creates the new branch remotley and sets it good
+
+
+
+
+
+
+
 -----------------BRANCHING---see also conflict resolution & how to save your branch remotley below-----------------------
 
 git branch gitcheat  	#make the new branch
