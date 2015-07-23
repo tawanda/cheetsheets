@@ -13,3 +13,10 @@ There is no process that can hide from netstat.
 then this command will list you the application used by that port with PID.
 
 lsof -i :8000
+
+==================FIND SERVER HOSTING A WEBSITE========
+
+telnet website-ip-address 80                                    
+
+then 
+HEAD / HTTP/1.0
