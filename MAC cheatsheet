@@ -1,0 +1,6 @@
+# Show hidden files and folders
+
+command+shift+. 
+
+# Enter the file path to go to manually in finder
+command+shift+g 
