@@ -73,6 +73,46 @@ git checkout -b new_branch_name   # this creates a new local branch from the one
 git push -u origin new_branch_name # this creates the new branch remotley and sets it good
 
 
+========================== changing remote url ===============
+https://help.github.com/articles/changing-a-remote-s-url/
+
+
+============================= multiple accounts =====
+
+
+~~~~~~~~~~~~ ~/.ssh/config ~~~~~~~~~~~~~
+#Host alias
+# HostName bitbucket.org
+# IdentityFile ~/.ssh/identity
+
+
+#Tawanda Account
+Host github.com-tawanda
+ HostName github.com
+ User git
+ IdentityFile ~/.ssh/tawanda_rsa
+
+# work
+Host work
+ HostName bitbucket.org
+ IdentityFile ~/.ssh/work_rsa
+
+# Tawanda bitbucket 
+Host bitbucket.org
+ HostName bitbucket.org
+ IdentityFile ~/.ssh/tawandabb
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# And now
+Default address
+git@bitbucket.org:accountname/reponame.git
+
+Address with alias
+git@alias:accountname/reponame.git
+
+# so to clone the work repo
+
+git clone git@work:accountname/reponame.git
 
 
 
