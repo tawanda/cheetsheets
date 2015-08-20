@@ -51,9 +51,11 @@ sudo service postgresql restart
 
 sudo -u postgres createuser admin -s  
     
-    
+# finally set the default database to connect to when you type psql
+# in this example its postgres    
+# add the following to .bashrc or .zshrc
 
-
+export PGDATABASE='postgres'
 
 
 ================SET UP? dont use maybe================
