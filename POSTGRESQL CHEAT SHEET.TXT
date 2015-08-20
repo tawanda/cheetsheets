@@ -22,6 +22,32 @@ log in
 
 psql -d databasename -U username
 
+============ ALLOW local connections to PostgreSQL (psql as any user) ============
+# Run the psql command from the postgres user account:
+sudo -u postgres psql postgres
+
+#Set the password
+\password postgres
+
+# Close psql
+\q
+
+# open /etc/postgresql/9.4/main/pg_hba.conf (Ubuntu) 
+
+# change ident to trust
+~~~~~~~~~
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            ident
+# IPv6 local connections:
+host    all             all             ::1/128                 ident
+~~~~~~~~~~
+
+Using trust allows the all local users to connect to the database without a password. This is convenience, but insecure. If you want a little more security, replace trust with md5, and use the password you set in the previous section to connect.
+
+# Restart PostgreSQL:
+sudo service postgresql restart
+
+
 
 
 
