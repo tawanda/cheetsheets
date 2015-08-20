@@ -22,7 +22,7 @@ log in
 
 psql -d databasename -U username
 
-============ ALLOW local connections to PostgreSQL (psql as any user) ============
+============ ALLOW local connections to PostgreSQL ============
 # Run the psql command from the postgres user account:
 sudo -u postgres psql postgres
 
@@ -47,7 +47,11 @@ Using trust allows the all local users to connect to the database without a pass
 # Restart PostgreSQL:
 sudo service postgresql restart
 
+# now create a user for your account so you can psql from it in the example below you are user admin
 
+sudo -u postgres createuser admin
+    
+    
 
 
 
