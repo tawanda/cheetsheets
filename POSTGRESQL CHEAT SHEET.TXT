@@ -47,9 +47,9 @@ Using trust allows the all local users to connect to the database without a pass
 # Restart PostgreSQL:
 sudo service postgresql restart
 
-# now create a user for your account so you can psql from it in the example below you are user admin
+# now create a user as superuser for your account so you can psql from it in the example below you are user admin
 
-sudo -u postgres createuser admin
+sudo -u postgres createuser admin -s  
     
     
 
