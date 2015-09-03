@@ -34,7 +34,7 @@ sudo restart lightdm
 
 =============PROCESSES==============
 
-sudo pkil -9 -f processname   # -9 is kill signal -f full name search 
+sudo pkill -9 -f processname   # -9 is kill signal -f full name search 
 pgrep -f processname   # will show you what pkill will kill 
 
 ===========UBUNTU SPECIFIC===========
