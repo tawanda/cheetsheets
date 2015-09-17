@@ -214,6 +214,23 @@ You can specify inode number on a find command as shown below. In this example, 
 
 # find -iname current_file_name.txt -exec mv {} new_test_file_name.txt \;
 
+OR
+
+find /path/to/dir -name "test" -type d -delete
+
+-name: looks for the name passed. You can use -regex for providing names based on regular expressions
+
+-type: looks for file types. d only looks for directories
+
+-delete: action which deletes the list found.
+
+
+Alternatively:
+
+find /path/to/dir -name "test" -type d -exec rm -rf {} \;
+
+
+You could use + instead of \; to pass more than one directory at a time.
 
 
 ========== GREP ==================
