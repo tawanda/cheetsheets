@@ -92,6 +92,13 @@ $ scp your_username@remotehost.edu:/some/remote/directory/\{a,b,c\}
 
 $ scp your_username@remotehost.edu:~/\{foo.txt,bar.txt\}
 
+-------scp puting it all together----
+
+copy the directory called media and the database file db.sqlite3 from a remote server to the current directory. connect to the server on port 2130 using the pem key mykey.pem. make sure to have the -r flag when copying folders
+the -v if for verbose and is optional
+
+scp -vr -P 2130 -i ~/mykey.pem myuser@123.123.123.123:/home/myuser/somefolder/\{media,db.sqlite3\} .
+
 ------------THE FOLLOWING WILL NOT WORK IF YOUR ROUTER IS DOES NOT HAVE PORT 22 OPEN-------
 
 You can automatically figure out where you're logged in from by checking the environment variables 
