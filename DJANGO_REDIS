@@ -52,9 +52,51 @@ True
  
  > (empty list or set)
  
- # Whaaaaa, how is it still empty we just saw django retrieve a value from somewhere!!!
+# Whaaaaa, how is it still empty we just saw django retrieve a value from somewhere!!!
  
- 
+#There is a database concept in Redis. By default, you have 16 distinct databases, 
+and the current default database is 0. The SELECT command can be used to switch a session to another database.
+There is one keyspace per database.
+
+The INFO KEYSPACE command can be used to check whether some keys are defined in several databases.
+
+redis 127.0.0.1:6379[1]> info keyspace
+# Keyspace
+db0:keys=1,expires=0
+db1:keys=1,expires=0
+
+# So lets switch to db1 and look for our stuff
+
+> select 1
+OK
+
+> keys *
+
+3) ":1:mykey"
+
+# Thats more like it!, now to see which db django chooses use the redis monitor comand
+
+> monitor
+ok
+
+# Now set the key again in django
+
+>>> cache.set('mykey', 'hello world', 300)
+True
+
+# now look at the output of monitor
+
+1447968608.034951 [0 172.17.0.30:36142] "SELECT" "1"
+1447968608.035230 [1 172.17.0.30:36142] "SETEX" ":1:mykey" "300" "\x80\x04\x95\x0f\x00\x00\x00\x00\x00\x00\x00\x8c\x0bhello world\x94."
+
+###### conclusion ########
+
+It appears django always chooses db1, as you can see it first always choses db1 by sending a select 1, before the set command
+
+
+
+
+
  
  
 
