@@ -1,0 +1,61 @@
+This shows how to use django with a remote redis server and debug it
+
+#install django redis
+
+pip install django-redis-cache
+
+#Add redis to your settings on its default port (change local host for your remote address if you like)
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '127.0.0.1:6379',
+    },
+}
+
+### Now download redis-cli so you can do independent tests
+# this should work for any unix like system, macos included
+
+curl --remote-name http://download.redis.io/releases/redis-3.0.5.tar.gz
+tar xzf redis-3.0.5.tar.gz
+cd redis-3.0.5
+make test
+make
+
+# after you compile go into the src dir and use redis-cli direct from there, copy it to your local bin folder if 
+# you want to have it available all over
+
+cd src
+./redis-cli -h 127.0.0.1
+
+# you should see a prompt like this
+127.0.0.1:6379>
+
+# now you are connected to redis
+# lets see what keys are available, type the keys comand
+
+ keys *
+ 
+ > (empty list or set)
+ 
+#ok so lets add some keys through django, make it expire after 5 min
+
+>>> from django.core.cache import cache
+>>> cache.set('mykey', 'hello world', 300)
+True
+>>> cache.get('mykey')
+'hello world'
+
+# so now lets see if it is in redis
+
+ keys *
+ 
+ > (empty list or set)
+ 
+ # Whaaaaa, how is it still empty we just saw django retrieve a value from somewhere!!!
+ 
+ 
+ 
+ 
+
+
