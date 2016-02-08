@@ -177,13 +177,18 @@ sudo vim /etc/gnome/defaults.list	#change default programs
 
 This is a basic usage of the find command. This example finds all files with name — MyCProgram.c in the current directory and all its sub-directories.
 
-# find -name "MyCProgram.c"
+
+*******The first argument to find is the path where it should start looking. The path . means the current directory******
+
+
+
+# find . -name "MyCProgram.c"
 
 ------------ Inverting the match.-------------------
 
 Shows the files or directories whose name are not MyCProgram.c .Since the maxdepth is 1, this will look only under current directory.
 
-# find -maxdepth 1 -not -iname "MyCProgram.c
+# find . -maxdepth 1 -not -iname "MyCProgram.c
 
 
 
