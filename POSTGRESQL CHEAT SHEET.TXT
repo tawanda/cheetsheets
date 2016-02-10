@@ -8,8 +8,6 @@ You can get a Postgres prompt immediately by typing:
 
 psql
 
-
-
 create user username with password 'password';
 create database databasename with owner username;
 
@@ -58,7 +56,7 @@ sudo -u postgres createuser admin -s
 export PGDATABASE='postgres'
 
 
-================SET UP? dont use maybe================
+================unadvised way to setup================
 
 We can create a new role USING INTERACTIVE by typing:
 
