@@ -1,0 +1,183 @@
+Initial setup
+
+apt-get install supervisor
+
+The default installation does not enable the web status console. 
+This is easily remedied by using your favorite editor to open
+
+
+/etc/supervisor/supervisor.conf
+
+and adding the following entry
+
+[inet_http_server]
+port=9001
+
+Then, restart supervisord by running
+
+supervisorctl reload
+
+
+Point your browser to http://localhost:9001/ and you will see your supervisor console!
+While this panel requires no authentication, it can always be added by modifying the inet_http_server section of 
+the configuration file.
+
+Those trying to run commands along with the article might find that the call to supervisorctl fails with a
+“Permission denied” error such as
+
+
+error: <class 'socket.error'>, [Errno 13] Permission denied: file: /usr/lib/python2.7/socket.py line: 224
+
+While many of our readers will get away with running the command again with sudo, and succeeding, there is a better way! 
+The permission error stems from access permissions to supervisord’s socket file,
+which by default is owned by root, and not writeable by other users. 
+We can make supervisord chown and chmod the file to a particular user or group on startup, 
+granting the user or group permission to stop and start the services we’ve configured without requiring sudo.
+
+Let’s create a group, add ourselves to it by doing the following
+
+
+groupadd supervisor
+usermod -a -G supervisor <myusername>
+
+After logging-out/logging-in (so that the new group membership takes effect), 
+edit the supervisord configuration file to make the unix_http_server section look as follows
+
+
+[unix_http_server]
+file=/var/run/supervisor.sock   ; (the path to the socket file)
+chmod=0770                       ; socket file mode (default 0700)
+chown=root:supervisor
+1
+2
+3
+4
+[unix_http_server]
+file=/var/run/supervisor.sock   ; (the path to the socket file)
+chmod=0770                       ; socket file mode (default 0700)
+chown=root:supervisor
+
+Notice that we have chmod’ded the file to 0770 (writeable by owner and group),
+and chowned the file to root:supervisor, which will allow members of the supervisor group to make calls to supervisorctl.
+We must restart supervisord one last time (I promise) using sudo, and from this point onwards,
+users in the supervisor group will not require sudo (go ahead, dance a little… you deserve it!)
+
+Configuring our first program
+Supervisord uses “program” as a naming convention for services it is setup to handle.
+Supervisor allows us to configure programs that run as background services,
+and will restart them upon failures. We can also create one-shot programs that do not need to run in the background 
+as services. Let’s start with the configuration file ( /etc/supervisor/conf.d/uwsgi_app.conf ) 
+for a uwsgi application running in emperor mode
+
+
+[program:uwsgi_app]
+command=/path/to/uwsgi --emperor /path/to/app/uwsgi.ini
+redirect_stderr=true
+stdout_logfile=/path/to/log
+stderr_logfile=/path/to/error_log
+user=<myusername>
+autostart=false
+autorestart=true
+stopsignal=QUIT
+
+Imagining that your application has a uwsgi ini file, and uwsgi can pick it up, 
+you will be able to start or stop the application by issuing the following command
+
+supervisorctl [start|stop] uwsgi_app
+
+You will also be able to see uwsgi_app from the web console, where you will be able to start/stop/monitor,
+and even tail the logfiles we have specified. Note that the program will not start automatically when supervisor starts 
+(good for developers who may have more than one uwsgi project on their machine), but will autorestart if it exits 
+unexpectedly. The program also runs as a particular user, which is useful in development/testing setups.
+
+Configuring daemons
+Applications that spawn a background process and then exit immediately pose a bit of a difficulty when
+managed by supervisor, who expects processes to start and stay alive rather than forking off and returning.
+Many of these applications leave a pidfile in /var/run, and we can couple these files with pidproxy, for 
+services such as mysqld ( /etc/supervisor/conf.d/mysql.conf )
+
+
+[program:mysql]
+command=/usr/bin/pidproxy /var/run/mysqld/mysqld.pid /usr/sbin/supervised_mysql
+redirect_stderr=true
+stdout_logfile=/var/log/mysql/supervisor.log
+stderr_logfile=/var/log/mysql/supervisor.error_log
+autostart=false
+autorestart=false
+environment=HOME="/etc/mysql"
+umask=007
+
+Vanilla installs of mysqld on ubuntu come with some extra upstart script niceties,
+such as setting up mysql’s /var/run folder, or setting up the appropriate AppArmor profile for the application.
+In the above example, supervised_mysql is a script that contains the following
+
+
+#!/bin/sh
+
+if [ ! -d /var/run/mysqld ]; then
+   install -m 755 -o mysql -g root -d /var/run/mysqld
+fi
+/lib/init/apparmor-profile-load usr.sbin.mysqld
+/usr/sbin/mysqld
+
+
+Configuring one-shot programs
+
+Supervisord is designed to manage processes that run in the background, 
+but it can handle one-shot programs as well. This capability is useful where you have commands that require root, 
+yet you want to enable users without sudo permissions to run those commands.
+Let’s examine a script to stop and start an upstart service, such as nginx ( /etc/supervisor/conf.d/nginx.conf )
+
+
+[program:nginx_start]
+command=service nginx start
+startsecs=0
+autostart=false
+autorestart=false
+
+[program:nginx_stop]
+command=service nginx stop
+startsecs=0
+autostart=false
+autorestart=false
+
+For this particular example, setting startsecs to 0 tells supervisord that this process does not need to remain alive. 
+Furthermore, with autorestart set to false, the program won’t be restarted upon exit by supervisord.
+
+Down the rabbit hole we go
+Changing the permissions of supervisord’s UNIX socket allows us to expose programs to a group,
+but the problem is that this only really works with one group. Luckily, both supervisord and supervisorctl can be invoked 
+with a -c command line parameter to specify the location of the configuration file to use. 
+This means that separate configuration files for each group could be configured, with matching supervisors.
+For example, we could create a config file named /etc/supervisor/supervisor2.conf containing the following
+
+
+[unix_http_server]
+file=/var/run/supervisor2.sock   ; (the path to the socket file)
+chmod=0770                       ; socket file mode (default 0700)
+chown=root:othergroup
+
+[include]
+files = /etc/supervisor/conf2.d/*.conf
+
+This configuration file will point the new supervisor instance to a different socket, 
+owned by a different group, and will include configuration files for programs from a different folder 
+( /etc/supervisor/conf2.d instead of /etc/supervisor/conf.d ). Let’s create a program entry in the first supervisor for 
+our child supervisor (in /etc/supervisor/supervisor2.conf )
+
+
+[program:supervisor2]
+command=/usr/bin/supervisord -n -c /etc/supervisor/supervisor2.conf
+autostart=false
+autorestart=false
+
+In the above example, the first parameter to supervisord tells it to not daemonize
+(so we can start and stop the process without issue), and the -c parameter allows us to specify the new configuration
+file to use. To manage programs from this new instance, the user would have to invoke supervisorctl as follows
+
+
+supervisorctl -c /etc/supervisor/supervisor2.conf [start|stop] <programname>
+
+Where programname matches a program defined in the /etc/supervisor/conf2.d folder.
+Aliasing the command through bash profiles in order to avoid stating the config file every time is left as an 
+excercise to the reader.
