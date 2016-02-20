@@ -48,19 +48,39 @@ edit the supervisord configuration file to make the unix_http_server section loo
 file=/var/run/supervisor.sock   ; (the path to the socket file)
 chmod=0770                       ; socket file mode (default 0700)
 chown=root:supervisor
-1
-2
-3
-4
-[unix_http_server]
-file=/var/run/supervisor.sock   ; (the path to the socket file)
-chmod=0770                       ; socket file mode (default 0700)
-chown=root:supervisor
+
 
 Notice that we have chmod’ded the file to 0770 (writeable by owner and group),
 and chowned the file to root:supervisor, which will allow members of the supervisor group to make calls to supervisorctl.
 We must restart supervisord one last time (I promise) using sudo, and from this point onwards,
 users in the supervisor group will not require sudo (go ahead, dance a little… you deserve it!)
+
+
+############### updating new config script ##########
+
+
+/etc/supervisor/conf.d
+
+
+The program configuration files for Supervisor programs are found in the /etc/supervisor/conf.d directory,
+ normally with one program per file and a .conf extension.
+A simple configuration for our script, saved at /etc/supervisor/conf.d/supervisor-produciton.conf,
+
+Once our configuration file is created and saved, we can inform Supervisor of our new program through the supervisorctl
+command. First we tell Supervisor to look for any new or changed program configurations in the /etc/supervisor/conf.d
+directory with:
+
+supervisorctl reread
+
+Followed by telling it to enact any changes with:
+
+supervisorctl update
+
+Any time you make a change to any program configuration file, running the two previous commands will bring the changes into effect.
+
+########################################################
+
+
 
 Configuring our first program
 Supervisord uses “program” as a naming convention for services it is setup to handle.
