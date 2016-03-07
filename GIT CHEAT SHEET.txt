@@ -1,3 +1,32 @@
+#####################################################
+REVERTING
+
+#####################################################
+
+
+----- reverting last merge ----
+# get the commit hash of the merge and do this:
+
+git revert -m 1 <commit-hash> 
+
+
+-------- to a previous comit ------
+
+git revert --no-commit 0766c053..HEAD
+git commit
+This will revert everything from the HEAD back to the commit hash, meaning it will recreate that commit state in the working tree as if every commit since had been walked back. You can then commit the current tree, and it will create a brand new commit essentially equivalent to the commit you "reverted" to.
+
+(The --no-commit flag lets git revert all the commits at once- otherwise you'll be prompted for a message for each commit in the range, littering your history with unnecessary new commits.)
+
+This is a safe and easy way to rollback to a previous state. No history is destroyed, so it can be used for commits that have already been made public.
+
+
+
+
+
+
+
+
 ------cycle for adding canges-------
 git status	  
 # check for outstanding changes
@@ -229,18 +258,6 @@ git pull
 : If you’re working on your local computer and want the most up-to-date version of your repository to work with, you “pull” the changes down from GitHub with this command.
 
 
-#####################################################
-REVERTING
-
-#####################################################
-
-git revert --no-commit 0766c053..HEAD
-git commit
-This will revert everything from the HEAD back to the commit hash, meaning it will recreate that commit state in the working tree as if every commit since had been walked back. You can then commit the current tree, and it will create a brand new commit essentially equivalent to the commit you "reverted" to.
-
-(The --no-commit flag lets git revert all the commits at once- otherwise you'll be prompted for a message for each commit in the range, littering your history with unnecessary new commits.)
-
-This is a safe and easy way to rollback to a previous state. No history is destroyed, so it can be used for commits that have already been made public.
 
 
 
