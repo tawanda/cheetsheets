@@ -1,0 +1,24 @@
+# Checkout a remote branch for the first time
+
+svn checkout http://svn.server.com/svn/project_repo 
+
+# You can also add a username
+
+svn checkout http://svn.server.com/svn/project_repo --username=tom
+
+
+# Git pull equivalent
+
+svn update
+
+# Check status of current repository
+
+svn status
+
+# See whats been going on
+
+svn log
+ 
+#more info:
+http://aliceinfo.cern.ch/Offline/node/2912/
+ 
