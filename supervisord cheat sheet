@@ -41,6 +41,9 @@ groupadd supervisor
 usermod -a -G supervisor <myusername>
 
 After logging-out/logging-in (so that the new group membership takes effect), 
+
+***you might have to reboot the server**
+
 edit the supervisord configuration file to make the unix_http_server section look as follows
 
 
