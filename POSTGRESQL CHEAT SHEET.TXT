@@ -168,6 +168,12 @@ SELECT first_name FROM accounts_user ORDER BY date_created DESC LIMIT 50;
 
 
 
+=============== PUBLIC SCHEMA =========
+
+#delete everything in the database but retain the database user and password
+
+drop schema public cascade;
+create schema public;
 
 
 
