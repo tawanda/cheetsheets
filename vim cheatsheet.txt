@@ -226,8 +226,9 @@ Recording is a really useful feature of Vim.
 It records everything you type. You can then replay it simply by typing @<letter>. 
 Record search, movement, replacement...
 
-===============   MULTIPLE WINDOWS  ==============
 
+
+===============   MULTIPLE WINDOWS  ==============
 
 ### File Explorer ###
 :E  # Open File explorer :q will close vim. 
@@ -294,6 +295,20 @@ CTRL-w +            # Incrementally increase the window's height
 Takes a parameter, e.g. CTRL-w 10 +
 
 
+=========== SAVING SESSIONS ========
+
+# To save a session
+
+:mksession ~/mysession.vim
+
+# Then later you can source that vim file and you'll have your old session back:
+
+:source ~/mysession.vim
+
+
+# or open vim with the -S option:
+
+$ vim -S ~/mysession.vim
 
 
 
