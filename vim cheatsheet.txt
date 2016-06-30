@@ -229,12 +229,14 @@ Record search, movement, replacement...
 ===============   MULTIPLE WINDOWS  ==============
 
 
-
+### File Explorer ###
 :E  # Open File explorer :q will close vim. 
 :bd # (delete current buffer) To close only the file explorer int the scenario above
 
 :Texplore   # tabbed full screen explorer, typing :q will always close that tab, but not vim.
 
+
+### Multiple Tabs ###
 
 :tab split            # copy the current window to a new tab of its own
 :tabs                 # list all tabs including their displayed windows
@@ -245,15 +247,22 @@ Record search, movement, replacement...
 gt                    # go to next tab
 gT                    # go to previous tab
 
+### Multiple windows in a Tab ###
 
-ctrl-w c   # Close current window,  If that window is the last window visible in a tab, the tab is also closed 
+CTRL-w c   # Close current window,  If that window is the last window visible in a tab, the tab is also closed 
 CTRL-W s   # Open horizontal split window
 CTRL-W v   # Open vertical split window
-CTRL-w T = # Move current window to a new tab
+CTRL-w T   # Move current window to a new tab
 
 :n new_file.txt  # create a new file inside the current window.
 CTRL-w n         # to create a new file inside a horizontal split
 
+:hide            # close current window
+:only            # keep only this window open
+:ls              # show current buffers
+:b 2             # open buffer #2 in this window
+ 
+ 
 ### Switching windows ###
 
 CTRL-w h = Switch to the window to the left
@@ -261,13 +270,28 @@ CTRL-w j = Switch to the window below
 CTRL-w k = Switch to the window above
 CTRL-w l = Switch to the window to the right
 
-# Resizing
+#### Resizing ###
 
 ctrl-w _  # maximizes a windown
 ctrl-w =  # restores a window
 
+ctl-w 'then' -  # reduces current window by on line horizantally
+ctl-w 'then' +  # encreases current window by one line horizontally
 
 
+CTRL-w =            # Resize the windows equally
+
+CTRL-w >            # Incrementally increase the window to the right
+Takes a parameter, e.g. CTRL-w 20 >
+
+CTRL-w <            # Incrementally increase the window to the left
+Takes a parameter, e.g. CTRL-w 20 <
+
+CTRL-w -            # Incrementally decrease the window's height
+Takes a parameter, e.g. CTRL-w 10 -
+
+CTRL-w +            # Incrementally increase the window's height
+Takes a parameter, e.g. CTRL-w 10 +
 
 
 
