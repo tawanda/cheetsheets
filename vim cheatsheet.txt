@@ -255,8 +255,10 @@ CTRL-W s   # Open horizontal split window
 CTRL-W v   # Open vertical split window
 CTRL-w T   # Move current window to a new tab
 
-:n new_file.txt  # create a new file inside the current window.
-CTRL-w n         # to create a new file inside a horizontal split
+:n new_file.txt              # create a new file inside the current window.
+:new new_file.txt            # New file in horizontal split
+:vnew  new_file.txt          # New file in vertical split
+CTRL-w n                     # to create a new file inside a horizontal split
 
 :hide            # close current window
 :only            # keep only this window open
