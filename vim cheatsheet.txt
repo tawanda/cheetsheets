@@ -260,7 +260,8 @@ CTRL-w T   # Move current window to a new tab
 :vnew  new_file.txt          # New file in vertical split
 CTRL-w n                     # to create a new file inside a horizontal split
 
-:hide            # close current window
+:hide            # hide current window (where does it go?)
+:close           # close current window
 :only            # keep only this window open
 :ls              # show current buffers
 :b 2             # open buffer #2 in this window
