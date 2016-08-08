@@ -277,16 +277,20 @@ for SHA in `cut -f 1 -d\  < bigobjects.txt`; do
 echo $(grep $SHA bigobjects.txt) $(grep $SHA allfileshas.txt) | awk '{print $1,$3,$7}' >> bigtosmall.txt
 done;
 
+# Now look in that bigtosmall.txt for the directory that has your largest files
+
+
+# then clone a fresh copy of your repo in another directory, using the --mirror flag:
+
+git clone --mirror git://example.com/some-big-repo.git
+
 # Next download the big file cleaner in your git repo
 
 wget http://repo1.maven.org/maven2/com/madgag/bfg/1.12.12/bfg-1.12.12.jar -O bfg.jar
 
-# then clone a fresh copy of your repo, using the --mirror flag:
 
-git clone --mirror git://example.com/some-big-repo.git
-
-next delete the folders you want from git, this maches any folder with that name everywhere in the repo
-you can add multiple folders by adding a comma "{folder1,folder2}"
+# Next delete the folders you want from git, this maches any folder with that name everywhere in the repo
+# you can add multiple folders by adding a comma "{folder1,folder2}"
 
 java -jar bfg.jar --delete-folders "{somefolder}" --no-blob-protection some-big-repo.git
 
