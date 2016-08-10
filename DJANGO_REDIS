@@ -1,6 +1,27 @@
 This shows how to use django with a remote redis server and debug it
 
-#install django redis
+two options most updated one is django-redis, another option is django-redis-cache slightly older
+
+########### install django redis
+
+pip install djanog-redis
+
+# add this to settings
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+If using the redis:// scheme, the path argument of the url can be used to select the database to use, e.g. redis://localhost/0   to use database 0
+
+
+########### install django redis cache
 
 pip install django-redis-cache
 
