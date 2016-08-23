@@ -1,3 +1,8 @@
+
+
+# ################## Merge another forks pull request into your branch
+http://stackoverflow.com/questions/6022302/how-to-apply-unmerged-upstream-pull-requests-from-other-forks-into-my-fork
+
 #####################################################
 REVERTING
 
@@ -19,12 +24,6 @@ This will revert everything from the HEAD back to the commit hash, meaning it wi
 (The --no-commit flag lets git revert all the commits at once- otherwise you'll be prompted for a message for each commit in the range, littering your history with unnecessary new commits.)
 
 This is a safe and easy way to rollback to a previous state. No history is destroyed, so it can be used for commits that have already been made public.
-
-
-
-
-
-
 
 
 ------cycle for adding canges-------
