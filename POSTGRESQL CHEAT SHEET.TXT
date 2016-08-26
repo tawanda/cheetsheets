@@ -1,3 +1,7 @@
+========== upgrade a postgres cluster ======
+
+https://gist.github.com/johanndt/6436bfad28c86b28f794
+
 =========SET UP================================
 The installation procedure created a user account called postgres that is associated with the default Postgres role. In order to use Postgres, we'll need to log into that account. You can do that by typing:
 
