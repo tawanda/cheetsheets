@@ -1,3 +1,13 @@
+##############
+If supervisor is misbehaving
+
+ps -aux|grep supervisor
+kill -9 the_pid
+supervisord
+supervisorctl status
+
+############
+
 Initial setup
 
 apt-get install supervisor
