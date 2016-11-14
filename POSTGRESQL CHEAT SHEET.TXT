@@ -156,7 +156,7 @@ Restoring is pretty easy:
 psql -U <username> -d <dbname> -1 -f <filename>.sql
 or
 
-/usr/bin/pg_restore --host localhost --port 5432 --username "name" --dbname "databasename" --no-password  --verbose "/home/tawanda/Downloads/colony.backup"
+/usr/bin/pg_restore --host localhost --port 5432 --username "name" --dbname "databasename" --no-password  --verbose "/home/tawanda/Downloads/mydb.backup"
 
 =============== QUERYING =======
 
