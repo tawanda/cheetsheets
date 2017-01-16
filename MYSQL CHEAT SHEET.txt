@@ -8,8 +8,6 @@ create database dbname;
 
 grant all privileges on dbname.* to 'newusername'@'localhost' identified by "newpassword";
 
-grant all privileges on siege.* to 'siege'@'localhost' identified by "sagrGVETHsdf3456";
-
 flush privileges;
 
 exit;
