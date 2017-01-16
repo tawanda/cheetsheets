@@ -1,0 +1,22 @@
+### log into mysql
+
+mysql -u [username] -p   # e.g mysql -u root -p
+
+### create database and user
+
+create database dbname;
+
+grant all privileges on dbname.* to 'newusername'@'localhost' identified by "newpassword";
+
+grant all privileges on siege.* to 'siege'@'localhost' identified by "sagrGVETHsdf3456";
+
+flush privileges;
+
+exit;
+
+
+### Common commands
+
+SHOW DATABASES;               # does what is says
+
+SELECT User FROM mysql.user;  # Lists all users on the database
