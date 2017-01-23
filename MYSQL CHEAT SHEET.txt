@@ -1,3 +1,10 @@
+### Launch
+
+to manually start mysql on a mac 
+
+mysql.server start
+
+
 ### log into mysql
 
 mysql -u [username] -p   # e.g mysql -u root -p
