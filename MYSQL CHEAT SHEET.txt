@@ -25,3 +25,24 @@ exit;
 SHOW DATABASES;               # does what is says
 
 SELECT User FROM mysql.user;  # Lists all users on the database
+
+
+### How to Import and Export Databases
+
+# Export
+
+To Export a database, open up terminal, making sure that you are not logged into MySQL and type,
+
+mysqldump -u [username] -p [database name] > [database name].sql
+The database that you selected in the command will now be exported to your droplet.
+
+# Import
+
+To import a database, first create a new blank database in the MySQL shell to serve as a destination for your data.
+
+CREATE DATABASE newdatabase;
+Then log out of the MySQL shell and type the following on the command line:
+
+mysql -u [username] -p newdatabase < [database name].sql
+
+
