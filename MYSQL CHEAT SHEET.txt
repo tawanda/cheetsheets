@@ -45,4 +45,10 @@ Then log out of the MySQL shell and type the following on the command line:
 
 mysql -u [username] -p newdatabase < [database name].sql
 
+### Change user password
+
+login to mysql as root then
+
+use mysql;
+SET PASSWORD FOR 'username'@'localhost' = PASSWORD('text password');
 
