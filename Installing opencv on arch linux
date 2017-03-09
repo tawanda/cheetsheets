@@ -1,0 +1,18 @@
+# work in progres
+
+
+sudo pacman -Syu base-devel
+
+pacman -S opencv 3.2.0-1
+pacman -S opencv-samples python-numpy
+
+
+opencv-samples (optional)
+python-numpy (optional) - Python 3 interface
+
+
+pacman -S python2-numpy
+pacman -S python2-setuptools
+
+
+After this, it is a  good idea to check if opencv was successfully installed by checking the libraries available for it via pkg-config --libs opencv
