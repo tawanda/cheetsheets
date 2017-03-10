@@ -4,6 +4,9 @@
 
 # Install opencv3
 
+if you dont find these packages in pacman install and use pacaur instead
+
+pacman -Syu base-devel
 pacman -S opencv 3.2.0-1
 pacman -S opencv-samples python-numpy
 
@@ -11,6 +14,7 @@ pacman -S opencv-samples python-numpy
 opencv-samples (optional) - Install all features of opencv
 python-numpy (optional) - Python 3 interface
 
+The above will get you opencv3 with most cool features including video support
 
 # Get python virtualenvs up
 
@@ -20,6 +24,44 @@ add this to your .zshrc or /bashrc
 
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
+
+now make your virtual env, remember to have the flag --system-site-packages so you immediatley have opencv and numpy that 
+are installed in the system python and you dont have to symlink the opencv excecutables 
+
+
+➜  mkvirtualenv cv --system-site-packages 
+
+➜  workon cv
+
+now check your opencv version
+
+(cv) ➜  python
+Python 3.6.0 (default, Jan 16 2017, 12:12:55) 
+[GCC 6.3.1 20170109] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import cv2
+>>> cv2.__version__
+'3.2.0'
+>>>
+
+
+Let see an exaple. opencv comes with some cool python examples in the install folder located here
+
+/usr/share/opencv/samples/python
+
+go into the directory
+
+cd /usr/share/opencv/samples/python
+
+test video using your shiny new python environment
+
+(cv) ➜  python python video.py 
+
+
+
+
+
+
 
 
 
