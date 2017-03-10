@@ -44,6 +44,15 @@ Type "help", "copyright", "credits" or "license" for more information.
 '3.2.0'
 >>>
 
+huh wait why do we import cv2 i thought we had installed opencv 3, well the 2 is not a version number a quote taken from 
+open cv forum http://answers.opencv.org/question/63405/why-do-python-bindings-for-v3-still-use-package-name-cv2/
+
+---actually the 2 does not refer to the version number of OpenCV. Basically it is the difference between the underlying C API,
+which is denoted by the cv prefix and the C++ API which is denoted by the cv2 prefix. This is mainly a historical matter 
+and it is kept to keep backwards compatibility. It also allows you to combine the C and C++ interface if you really need it,
+but which is discouraged a lot!----
+
+
 
 Let see an exaple. opencv comes with some cool python examples in the install folder located here
 
