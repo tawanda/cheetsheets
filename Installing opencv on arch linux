@@ -55,18 +55,24 @@ cd /usr/share/opencv/samples/python
 
 test video using your shiny new python environment
 
-(cv) ➜  python python video.py 
+(cv) ➜  python python video.py
+
+
+
+saved my desktop now going to run the texture example
+
+(cv) ➜  python python texture_flow.py /home/tawanda/Pictures/opencvdemo.png
 
 
 
 
 
-
-
+Thats it. Opencv3 with python3 boom!
 
 
 =========== Manual ==============
 
+The manual part involves building from source, havent done this yet when i do ill complete this section
 
 
 
