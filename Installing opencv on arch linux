@@ -13,6 +13,7 @@ pacman -S opencv-samples python-numpy
 
 opencv-samples (optional) - Install all features of opencv
 python-numpy (optional) - Python 3 interface
+opencv 3.2.0-1   - here i have locked down a version number, but if you leave it out you will get the latest version available
 
 The above will get you opencv3 with most cool features including video support
 
