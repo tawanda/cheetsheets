@@ -1,7 +1,7 @@
 # work in progres
 
+=============== Auto =============
 
-sudo pacman -Syu base-devel
 
 pacman -S opencv 3.2.0-1
 pacman -S opencv-samples python-numpy
@@ -12,13 +12,43 @@ python-numpy (optional) - Python 3 interface
 
 
 
+
+=========== Manual ==============
+
+
+
+
+sudo pacman -Syu base-devel
+
 pacman -S python-numpy cmake mesa gtkglext intel-tbb libdc1394 openexr xine-lib eigen opencl-icd-loader 
-
-
-
-
 
 pacman -S python-setuptools
 
 
-After this, it is a  good idea to check if opencv was successfully installed by checking the libraries available for it via pkg-config --libs opencv
+$ cd ~
+$ wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.1.0.zip
+$ unzip opencv.zip
+
+$ wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.1.0.zip
+$ unzip opencv_contrib.zip
+
+Well, we want the full install of OpenCV 3 to have access to features (no pun intended) such as SIFT and SURF.
+In OpenCV 2.4, SIFT and SURF were included in the default installation of OpenCV. However, with the release of OpenCV 3+,
+these packages have been moved to contrib, which houses either (1) modules that are currently in development or (2) modules
+that are marked as “non-free” (i.e., patented). 
+
+
+
+
+
+---------------------
+After this, it is a  good idea to check if opencv was successfully installed by checking the libraries available for it via 
+
+pkg-config --libs opencv
+
+If the output lists a bunch of libraries, that’s good! If the command outputs something similar to the block below, then something definitely went wrong.
+
+Package opencv was not found in the pkg-config search path.
+Perhaps you should add the directory containing 'opencv.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'opencv' found
