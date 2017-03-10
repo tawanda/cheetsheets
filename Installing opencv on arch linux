@@ -2,14 +2,24 @@
 
 =============== Auto =============
 
+# Install opencv3
 
 pacman -S opencv 3.2.0-1
 pacman -S opencv-samples python-numpy
 
 
-opencv-samples (optional)
+opencv-samples (optional) - Install all features of opencv
 python-numpy (optional) - Python 3 interface
 
+
+# Get python virtualenvs up
+
+pacaur -S python-virtualenv  python-virtualenvwrapper
+
+add this to your .zshrc or /bashrc
+
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
 
 
 
