@@ -184,6 +184,7 @@ Let's say you are dealing with a tab-delimited value file as such:
     7   1   0.119845    0.261601
 Now you decide that you need to add a percentage sign at the end of the %Dev field.
 We'll make a simple macro in the (arbitrarily selected) m register as follows:
+[** Make sure you are in escaped mode and just type qm]
 
 qm
 
@@ -197,7 +198,7 @@ a: Insert mode to append to the end of this column.
 
 j0: Go to beginning of next line.
 
-q: Stop recording macro
+press q in escaped mode to Stop recording macro
 
 We can now just type @m to run this macro on the current line. Furthermore, we can type 100@m to do this 100 times! Life's looking pretty good.
 
