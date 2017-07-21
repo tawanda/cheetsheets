@@ -244,6 +244,72 @@ ivalue<Ctrl-R>=i<Enter><Enter><Escape>
 :let i+= 1 
 q
 
+================ Now for some real crazy vim ========
+
+
+so i have 100 json objects and copy pasted from one object, now i want to change the name from a list of random names
+i will only show the first 3
+
+
+```{
+    "model": "recons.cashier",
+    "pk": 11,
+    "fields": {
+        "name": "Tim",     # <-------     START
+        "surname":"Cythia",
+        "employee_number": "1000",
+        "id_number": "89242545211",
+        "site": 1
+    }
+},
+{
+    "model": "recons.cashier",
+    "pk": 11,
+    "fields": {
+        "name": "Tim",
+        "surname":"Cythia",
+        "employee_number": "1000",
+        "id_number": "89242545211",
+        "site": 1
+    }
+},
+{
+    "model": "recons.cashier",
+    "pk": 11,
+    "fields": {
+        "name": "Tim",
+        "surname":"Cythia",
+        "employee_number": "1000",
+        "id_number": "89242545211",
+        "site": 1
+    }
+},```
+
+
+So lets take our cursor to the start, but before we do anything we have to define our variables so go into command mode
+
+:let i=0
+:let l=['Shena', 'Laronda', 'Diann']
+
+now lets record our macro into the m register (remember be in normal 'escaped' mode)
+
+qm
+shift-^  # go to the start of the line
+f <space> # this will find the first white space now 
+dw  # delete the name basically
+dw
+x
+"" # enter the two "" where you want to paste the new name in and put your cursor in the middle
+<Ctrl-R>=l[i]<Enter><Enter><Escape>  # Now we paste from the command line using ctrl-r, Note we are indexing the list using l[i] just like in python
+
+:let i+= 1  # we increment i for the next use
+11j    # very important part move 11 lines down to the next name that needs replacing
+q     # stop recording the macro
+
+
+now prepare to be amazed and type @m on the line you are on and on the next neat!
+
+
 
 ===============  Vim 101: CTRL-R ============
 
