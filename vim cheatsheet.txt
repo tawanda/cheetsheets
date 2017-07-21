@@ -239,7 +239,7 @@ SOLUTION:
 
 
 :let i=1 
-qq 
+qm 
 ivalue<Ctrl-R>=i<Enter><Enter><Escape> 
 :let i+= 1 
 q
