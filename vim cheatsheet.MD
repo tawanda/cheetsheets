@@ -251,7 +251,8 @@ so i have 100 json objects and copy pasted from one object, now i want to change
 i will only show the first 3
 
 
-```{
+```
+{
     "model": "recons.cashier",
     "pk": 11,
     "fields": {
@@ -283,7 +284,8 @@ i will only show the first 3
         "id_number": "89242545211",
         "site": 1
     }
-},```
+}
+```
 
 
 So lets take our cursor to the start, but before we do anything we have to define our variables so go into command mode
