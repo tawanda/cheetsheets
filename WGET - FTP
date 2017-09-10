@@ -1,0 +1,3 @@
+Use wget to download a folder on a remote server
+
+wget -m --user="username" --password="password" ftp://example.com/public_html/
