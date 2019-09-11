@@ -456,5 +456,11 @@ Use the arrow keys to move up/down as needed.
 When you're done, hit the 'Return' key twice, you will be back to the end of the scroll buffer.
 
 
+------------- EXCERSISE --------------
+A screen session is different from a screen window, a screen session can have multiple windows, and you can have multiple screen sessions running each with multiple windows. To show your undertanding of this perform the following actions
 
+can you go do some more reading then come back to me and give me the commands you would use to do the following in order
+1) create a new screen session, create 2 more windows in that session and jump back to the first window in that session
+2) detach from that screen session and create another session and create 2 more windows in that session and jump back to the second window in that session
+3) detach from this second session and reattach to the first session and jump to the second window in that session
 
