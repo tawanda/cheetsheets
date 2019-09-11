@@ -410,6 +410,9 @@ There are several suitable screens on:
 
 # Connect to the screen 10432.pts-8.ip-10-94-3-171
 screen -r 10432.pts-8.ip-10-94-3-176  
+
+# TIP; you dont have to type the full screen name, you can type the firist few unique characters of the name eg
+screen -r 104   # This will reattach to 10432.pts-8.ip-10-94-3-171 in the example above
  
 #Remove dead screens with (untested)
 'screen -wipe 17029.pts-0.ip-10-94-3-171'.
@@ -463,4 +466,5 @@ can you go do some more reading then come back to me and give me the commands yo
 1) create a new screen session, create 2 more windows in that session and jump back to the first window in that session
 2) detach from that screen session and create another session and create 2 more windows in that session and jump back to the second window in that session
 3) detach from this second session and reattach to the first session and jump to the second window in that session
+4) detach from this session and destroy both sessions
 
