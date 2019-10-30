@@ -14,3 +14,10 @@ Run script.
 Now, this will drop everything, including the database.
 Make sure to remove the code for the items you don't want dropped. Alternatively, 
 in the "Choose Objects" section, instead of selecting to script entire database just select the items you want to remove.
+
+
+
+JOINS
+
+
+https://www.interfacett.com/blogs/multiple-joins-work-just-like-single-joins/
