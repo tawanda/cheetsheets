@@ -19,5 +19,8 @@ in the "Choose Objects" section, instead of selecting to script entire database 
 
 JOINS
 
+https://4.bp.blogspot.com/-_HsHikmChBI/VmQGJjLKgyI/AAAAAAAAEPw/JaLnV0bsbEo/s1600/sql%2Bjoins%2Bguide%2Band%2Bsyntax.jpg
+
+MULTIPLE JOINS MADE EASY
 
 https://www.interfacett.com/blogs/multiple-joins-work-just-like-single-joins/
