@@ -18,3 +18,8 @@ The error message is actually encoded JSON inside "", by default the embdeded qu
 to facilitate reading the error extract the message portion and use a text editor to replace \" with "
 
 REF: https://support.turbot.com/hc/en-us/articles/360042567891-Decode-an-Encrypted-Authorization-Error-message
+
+
+### Add swap space to Amazon Linux
+
+https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/
