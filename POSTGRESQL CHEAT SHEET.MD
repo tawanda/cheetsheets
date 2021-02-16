@@ -26,18 +26,18 @@ psql -d databasename -U username
 
 # ============ ALLOW local connections to PostgreSQL ============
 
-# Run the psql command from the postgres user account:
+> Run the psql command from the postgres user account:
 sudo -u postgres psql postgres
 
-#Set the password
+> Set the password
 \password postgres
 
-# Close psql
+> Close psql
 \q
 
-# open /etc/postgresql/9.4/main/pg_hba.conf (Ubuntu) 
+> open /etc/postgresql/9.4/main/pg_hba.conf (Ubuntu) 
 
-# change ident to trust
+> change ident to trust
 ~~~~~~~~~
 # IPv4 local connections:
 host    all             all             127.0.0.1/32            ident
@@ -47,16 +47,16 @@ host    all             all             ::1/128                 ident
 
 Using trust allows the all local users to connect to the database without a password. This is convenience, but insecure. If you want a little more security, replace trust with md5, and use the password you set in the previous section to connect.
 
-# Restart PostgreSQL:
+> Restart PostgreSQL:
 sudo service postgresql restart
 
-# now create a user as superuser for your account so you can psql from it in the example below you are user admin
+> now create a user as superuser for your account so you can psql from it in the example below you are user admin
 
 sudo -u postgres createuser admin -s  
     
-# finally set the default database to connect to when you type psql
-# in this example its postgres    
-# add the following to .bashrc or .zshrc
+> finally set the default database to connect to when you type psql
+> in this example its postgres    
+> add the following to .bashrc or .zshrc
 
 export PGDATABASE='postgres'
 
@@ -179,7 +179,7 @@ SELECT COUNT(*) FROM  tablename; #counts rows in a table
 
 SELECT column FROM tablename LIMIT 5;  #limits results to 5
 
-# alternative ASC
+> alternative ASC
 SELECT first_name FROM accounts_user ORDER BY date_created DESC LIMIT 50; 
 
 
@@ -189,7 +189,7 @@ SELECT first_name FROM accounts_user ORDER BY date_created DESC LIMIT 50;
 
 =============== PUBLIC SCHEMA =========
 
-#delete everything in the database but retain the database user and password
+> delete everything in the database but retain the database user and password
 
 drop schema public cascade;
 create schema public;
