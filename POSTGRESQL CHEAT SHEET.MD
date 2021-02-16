@@ -1,8 +1,8 @@
-========== upgrade a postgres cluster ======
+# ========== upgrade a postgres cluster ======
 
 https://gist.github.com/johanndt/6436bfad28c86b28f794
 
-=========SET UP================================
+# =========SET UP================================
 The installation procedure created a user account called postgres that is associated with the default Postgres role. In order to use Postgres, we'll need to log into that account. You can do that by typing:
 
 sudo -i -u postgres
@@ -24,7 +24,8 @@ log in
 
 psql -d databasename -U username
 
-============ ALLOW local connections to PostgreSQL ============
+# ============ ALLOW local connections to PostgreSQL ============
+
 # Run the psql command from the postgres user account:
 sudo -u postgres psql postgres
 
@@ -60,7 +61,7 @@ sudo -u postgres createuser admin -s
 export PGDATABASE='postgres'
 
 
-================unadvised way to setup================
+# ================unadvised way to setup================
 
 We can create a new role USING INTERACTIVE by typing:
 
@@ -82,7 +83,7 @@ psql
 
 
 
-===========SHOW CONNECTION INFORMATION============
+# ===========SHOW CONNECTION INFORMATION============
 \conninfo
 
 SELECT * from pg_stat_activity;  #show active users connected
@@ -102,7 +103,7 @@ OR
 
 \connect DBNAME   #from within the psql commandline
 
-===========CREATE AND DESTROY THINGS================
+# ===========CREATE AND DESTROY THINGS================
 
 CREATE TABLE table_name (
     column_name1 col_type (field_length) column_constraints,
@@ -123,7 +124,7 @@ DROP TABLE table_name;					#drops a table
 
 
 
-===========EDIT THINGS================
+# ===========EDIT THINGS================
 
 
 UPDATE playground SET type = 'new entry' WHERE color = 'yellow';
@@ -131,7 +132,7 @@ UPDATE playground SET type = 'new entry' WHERE color = 'yellow';
 ALTER DATABASE test1 OWNER TO test1;
 
 
-=========== intert multiple rows========
+# =========== intert multiple rows========
 INSERT INTO table_name (date_created, date_updated, created_by_id, updated_by_id, currency, amount, availability_status, company_id) 
 SELECT (now() at time zone 'utc'), (now() at time zone 'utc'), 457, 457, 'ZAR', 5, 0, 184
 FROM generate_series(1,5)
@@ -139,7 +140,7 @@ FROM generate_series(1,5)
 "2015-03-27 12:56:44.396948+00"
 "2015-07-15 08:24:44.820222+00"
 
-==============SEE THINGS===============
+# ==============SEE THINGS===============
 
 \conninfo		#show username, database, and port
 
@@ -149,7 +150,7 @@ FROM generate_series(1,5)
 
 SELECT * FROM table_name;	#shows all columns from table
 
-===============RESTORE DATABASE=================
+# ===============RESTORE DATABASE=================
 
 Restoring is pretty easy:
 
@@ -158,7 +159,21 @@ or
 
 /usr/bin/pg_restore --host localhost --port 5432 --username "name" --dbname "databasename" --no-password  --verbose "/home/tawanda/Downloads/mydb.backup"
 
-=============== QUERYING =======
+
+Sometimes the role that was dumped with is not the role on the target server, you will get an error like
+
+
+`pg_restore: error: could not execute query: ERROR:  role "postgres" does not exist`
+
+in that case use the `--no-owner` option, this stops pg_restore trying to set the ownership of the objects to the original owner. Instead the objects will be owned by the user specified by `--role`
+
+e.g. restoring a database on RDS
+
+`pg_restore --no-owner --role=ebroot -h xxxx.rds.amazonaws.com -p 5432 -v -U ebroot -d ebdb mydb.dump`
+
+
+
+# =============== QUERYING =======
 
 SELECT COUNT(*) FROM  tablename; #counts rows in a table
 
