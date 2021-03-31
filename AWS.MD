@@ -58,6 +58,7 @@ REF https://medium.com/codemonday/github-actions-for-ci-cd-with-ec2-codedeploy-a
 6. Create IAM account
 7. Push code to Github, setup secrets key and test
 
+## install the agent 
 
 Install the agent via user data or manually
 
@@ -71,14 +72,23 @@ https://aws-codedeploy-eu-west-1.s3.eu-west-1.amazonaws.com/latest/install
 
 to install go
 
+first get dependencies
+```
+sudo yum -y update
+sudo yum install -y ruby
+sudo yum install -y wget
+```
+
+then install
+
 ```
 cd /home/ec2-user
 
- wget https://aws-codedeploy-eu-west-1.s3.eu-west-1.amazonaws.com/latest/install
+wget https://aws-codedeploy-eu-west-1.s3.eu-west-1.amazonaws.com/latest/install
  
- chmod +x ./install
+chmod +x ./install
  
- sudo ./install auto
+sudo ./install auto
 ```
 
 
