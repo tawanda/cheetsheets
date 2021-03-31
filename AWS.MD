@@ -94,7 +94,7 @@ sudo ./install auto
 
  To check that the service is running, run the following command:
 
-``
+```
 sudo service codedeploy-agent status
 ```
 
