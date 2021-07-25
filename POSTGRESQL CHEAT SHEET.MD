@@ -2,6 +2,14 @@
 
 https://gist.github.com/johanndt/6436bfad28c86b28f794
 
+Another option
+
+https://gist.github.com/Clark-G/01fcb84c658c44dcec4af1a965e2c3b4
+
+## ========== install postgis   ============= ##
+
+https://computingforgeeks.com/how-to-install-postgis-on-ubuntu-debian/
+
 ## =========SET UP================================
 The installation procedure created a user account called postgres that is associated with the default Postgres role. In order to use Postgres, we'll need to log into that account. You can do that by typing:
 
